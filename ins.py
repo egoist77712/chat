@@ -106,6 +106,7 @@ def get_message():
         - User-generated content: personal stories, vlogs, challenges
         - Names of celebrities or famous people(Both uppercase and lowercase are acceptable.) : Jay Chou, g dragon(G-DRAGON), jj lin(JJ Lin)
         - Name of the country : singapore, SG, China, USA, Malaysia
+        - the aspect of education: Educate Campus,Education
 
         If the user gives an unrelated, ambiguous, or off-topic answer (e.g., "I don’t use social media", "Not sure"), return "redo".  
 
@@ -113,6 +114,7 @@ def get_message():
 
         User answer: my interest is {user_message}
         """
+        
     print(base_prompt)
     url = "https://api.openai.com/v1/chat/completions"
     headers_template = {
@@ -137,8 +139,8 @@ def get_message():
     response.raise_for_status()  # Raise exception for HTTP errors
     answer = response.json()['choices'][0]['message']['content']
     print(answer)
-    
-    return jsonify({"message": answer})
+    cleaned = answer.strip('"')
+    return jsonify({"message": cleaned})
 @app.route("/save_chat", methods=["POST"])
 def save_chat():
     data = request.get_json()
