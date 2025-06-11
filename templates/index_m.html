@@ -916,10 +916,10 @@
   var like_status='no';
   var ip='';
   var flow_dit={
+    'failflow1':["Sorry, it seems that you haven't answered my question",'Did you enjoy reading my previous post?'],
     'successflow1':['Okay. you <b style="color:#702EF9;">did</b> enjoy reading my previous post.',"What kind of content are you interested in on social media?","For example, my interest is music. "],
-    'failflow1':["Sorry, it seems that you haven't answered my question","Did you enjoy reading my previous post?"],
-    'successflow2':['Okay.',"Please follow my official account if you haven’t. Let’s explore this world together!"],
     'failflow2':["Sorry, it seems that you haven't answered my question","What kind of content are you interested in on social media?","For example, my interest is music. "],
+    'successflow2':['Okay.',"Please follow my official account if you haven’t. Let’s explore this world together!"],
     'success2flow1':['Okay. you <b style="color:#702EF9;">didn’t</b> enjoy reading my previous post.',"What kind of content are you interested in on social media?","For example, my interest is music. "],
   }
 
@@ -1031,11 +1031,7 @@ if (document.documentElement.scrollTop >= 200) {
                         showMessagesSequentially(flow_dit[flow]);
 
                     }else{
-                        if (first_s==1) {
-                            last_talk=['Okay. You are interested in content about <b style="color:#702EF9;">'+response.message,'Thanks for sharing that you <b style="color:#702EF9;">did</b> enjoy reading my previous posts. <b style="color:#702EF9;">Because you mentioned that</b> you like topics about <b style="color:#702EF9;">'+response.message+'</b>, I will share more related content in the future.','</b>Please follow my official account if you haven’t. Let’s explore this world together!'];
-                        }else if(first_s==2){
-                            last_talk=['Okay. You are interested in content about <b style="color:#702EF9;">'+response.message,'Thanks for sharing that you <b style="color:#702EF9;">didn’t</b> enjoy reading my previous posts. <b style="color:#702EF9;">Because you mentioned that</b> you like topics about <b style="color:#702EF9;">'+response.message+'</b>, I will share more related content in the future.','</b>Please follow my official account if you haven’t. Let’s explore this world together!'];
-                        }
+                        last_talk=['Okay. You are interested in content <b style="color:#702EF9;">'+response.message,'</b>Please follow my official account if you haven’t. Let’s explore this world together!'];
                        
                         async function showMessagesSequentially(messages) {
                             for (const message of messages) {

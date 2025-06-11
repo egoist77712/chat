@@ -27,33 +27,74 @@ def check_sentence(sentence, banned_words):
     else:
         return False, []
 
-def write_to_google_sheet(user_msg, chatbot_msg, like_status, comment_list, ip):
+def write_to_google_sheet(user_msg, chatbot_msg, like_status, comment_list, ip,sheet_name):
     # Step 1: 设置认证
     scopes = ["https://www.googleapis.com/auth/spreadsheets"]
     creds = Credentials.from_service_account_file("credentials.json", scopes=scopes)
     client = gspread.authorize(creds)
 
-    # Step 2: 打开工作簿
+    # Step 2: 打开工作簿和第一个工作表
     sheet_id = "1wm3cfLh-AGl3Vbi_mi9nMU8IEuW0v-ZZdSgilxfDNWw"
     workbook = client.open_by_key(sheet_id)
+    sheet = workbook.worksheet(sheet_name) 
 
-    # Step 3: 创建新工作表
-    new_sheet = workbook.add_worksheet(title=ip, rows=100, cols=20)
-
-    # Step 4: 准备数据
-    data = [
-        ["IP", "User Messages", "Chatbot Messages", "Like Status", "Comments"],  # 表头
-        [ip, "\n".join(user_msg), "\n".join(chatbot_msg), like_status, "\n".join(comment_list)]
+    # Step 3: 准备要追加的数据
+    new_row = [
+        ip,
+        "\n".join(user_msg),
+        "\n".join(chatbot_msg),
+        like_status,
+        "\n".join(comment_list)
     ]
 
-    # Step 5: 写入数据
-    new_sheet.update("A1", data)
-    print("新工作表创建并填写完毕")
+    # Step 4: 追加数据为一行
+    sheet.append_row(new_row)
+
+    print("数据已追加到第一个工作表")
+
 
 @app.route('/')
 def home():
     # 渲染 index.html 页面
     return render_template('index.html')
+
+@app.route('/medium')
+def home2():
+    # 渲染 index.html 页面
+    return render_template('index_m.html')
+
+@app.route('/low')
+def home3():
+    # 渲染 index.html 页面
+    return render_template('index_l.html')
+
+@app.route('/3d_high')
+def home4():
+    # 渲染 index.html 页面
+    return render_template('index_3D_h.html')
+
+@app.route('/3d_medium')
+def home5():
+    # 渲染 index.html 页面
+    return render_template('index_3D_m.html')
+
+
+@app.route('/3d_low')
+def home6():
+    # 渲染 index.html 页面
+    return render_template('index_3D_l.html')
+
+@app.route('/comment', methods=['POST'])
+def comment():
+    data = request.json
+    user_message = data.get('message')
+    banned_words = load_banned_words('ban.txt')
+    has_banned, found_words = check_sentence(user_message, banned_words)
+
+    if has_banned:
+        print("句子包含违禁词！发现的词汇：", found_words)
+        return jsonify({"message": "ban_word"})
+    return jsonify({"message": "good"})
 
 @app.route('/get_message', methods=['POST'])
 def get_message():
@@ -141,6 +182,7 @@ def get_message():
     print(answer)
     cleaned = answer.strip('"')
     return jsonify({"message": cleaned})
+
 @app.route("/save_chat", methods=["POST"])
 def save_chat():
     data = request.get_json()
@@ -151,7 +193,73 @@ def save_chat():
     ip = data.get("IP")
     print(ip)
 
-    write_to_google_sheet(user_msg, chatbot_msg, like_status, comment_list, ip)
+    write_to_google_sheet(user_msg, chatbot_msg, like_status, comment_list, ip,"high")
     return jsonify({"status": "success", "message": "数据已保存到 Google Sheet"})
+
+@app.route("/save_chat2", methods=["POST"])
+def save_chat2():
+    data = request.get_json()
+    user_msg = data.get("user_message")
+    chatbot_msg = data.get("chatbot_message")
+    like_status = data.get("like_status")
+    comment_list = data.get("comment_list")
+    ip = data.get("IP")
+    print(ip)
+
+    write_to_google_sheet(user_msg, chatbot_msg, like_status, comment_list, ip,"medium")
+    return jsonify({"status": "success", "message": "数据已保存到 Google Sheet"})
+
+@app.route("/save_chat3", methods=["POST"])
+def save_chat3():
+    data = request.get_json()
+    user_msg = data.get("user_message")
+    chatbot_msg = data.get("chatbot_message")
+    like_status = data.get("like_status")
+    comment_list = data.get("comment_list")
+    ip = data.get("IP")
+    print(ip)
+
+    write_to_google_sheet(user_msg, chatbot_msg, like_status, comment_list, ip,"low")
+    return jsonify({"status": "success", "message": "数据已保存到 Google Sheet"})
+
+@app.route("/save_chat4", methods=["POST"])
+def save_chat4():
+    data = request.get_json()
+    user_msg = data.get("user_message")
+    chatbot_msg = data.get("chatbot_message")
+    like_status = data.get("like_status")
+    comment_list = data.get("comment_list")
+    ip = data.get("IP")
+    print(ip)
+
+    write_to_google_sheet(user_msg, chatbot_msg, like_status, comment_list, ip,"3d_high")
+    return jsonify({"status": "success", "message": "数据已保存到 Google Sheet"})
+
+@app.route("/save_chat5", methods=["POST"])
+def save_chat5():
+    data = request.get_json()
+    user_msg = data.get("user_message")
+    chatbot_msg = data.get("chatbot_message")
+    like_status = data.get("like_status")
+    comment_list = data.get("comment_list")
+    ip = data.get("IP")
+    print(ip)
+
+    write_to_google_sheet(user_msg, chatbot_msg, like_status, comment_list, ip,"3d_medium")
+    return jsonify({"status": "success", "message": "数据已保存到 Google Sheet"})
+
+@app.route("/save_chat6", methods=["POST"])
+def save_chat6():
+    data = request.get_json()
+    user_msg = data.get("user_message")
+    chatbot_msg = data.get("chatbot_message")
+    like_status = data.get("like_status")
+    comment_list = data.get("comment_list")
+    ip = data.get("IP")
+    print(ip)
+
+    write_to_google_sheet(user_msg, chatbot_msg, like_status, comment_list, ip,"3d_low")
+    return jsonify({"status": "success", "message": "数据已保存到 Google Sheet"})
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8000)

@@ -827,13 +827,13 @@
     <!-- 单个帖子 -->
     <div class="post">
         <div class="header" id="header2">
-            <div class="header_img"><img src="{{ url_for('static',filename='img/header.png')}}" width="44px" alt=""></div>
+            <div class="header_img"><img src="{{ url_for('static',filename='img/header2.png')}}" width="44px" alt=""></div>
             <div class="header_text"><p><b>Jasmyn &nbsp;</b><img src="{{ url_for('static',filename='img/correct.png')}}" width="16px;" alt="">&nbsp;<b style="color: gray;">•</b>&nbsp;<b style="color: #0095F6; font-size: 12px;">Follow</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="img/more.png" width="20px" alt=""></p><p style="margin-top: 0px;font-size: 12px;">Original audio</p></div>
         </div>
-      <div class="video"><video src="{{ url_for('static',filename='img/vedio.mp4')}}"   autoplay muted loop playsinline></video> </div>
+      <div class="video"><video src="{{ url_for('static',filename='img/vedio2.mp4')}}"   autoplay muted loop playsinline></video> </div>
       <div class="left_side">
           <div class="header" id="header1">
-              <div class="header_img"><img src="{{ url_for('static',filename='img/header.png')}}" width="44px" alt=""></div>
+              <div class="header_img"><img src="{{ url_for('static',filename='img/header2.png')}}" width="44px" alt=""></div>
               <div class="header_text"><p><b>Jasmyn &nbsp;</b><img src="{{ url_for('static',filename='img/correct.png')}}" width="16px;" alt="">&nbsp;<b style="color: gray;">•</b>&nbsp;<b style="color: #0095F6; font-size: 12px;">Follow</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="img/more.png" width="20px" alt=""></p><p style="margin-top: 0px;font-size: 12px;">Original audio</p></div>
           </div>
           <div class="comment">
@@ -869,13 +869,13 @@
         <p>More posts from Jasmyn.gram</p>
         <div class="xiangce_img">
         <div class="zhaopian" >
-            <img src="{{ url_for('static',filename='img/post_img.png')}}" style="width: 100%; height: 100%; object-fit: cover;" />
+            <img src="{{ url_for('static',filename='img/post_img4.png')}}" style="width: 100%; height: 100%; object-fit: cover;" />
         </div>
         <div class="zhaopian">
-            <img src="{{ url_for('static',filename='img/post_img2.png')}}" style="width: 100%; height: 100%; object-fit: cover;" />
+            <img src="{{ url_for('static',filename='img/post_img5.png')}}" style="width: 100%; height: 100%; object-fit: cover;" />
         </div>
         <div class="zhaopian">
-            <img src="{{ url_for('static',filename='img/post_img3.png')}}" style="width: 100%; height: 100%; object-fit: cover;" />
+            <img src="{{ url_for('static',filename='img/post_img6.png')}}" style="width: 100%; height: 100%; object-fit: cover;" />
         </div>
         <!-- <img src="{{ url_for('static',filename='img/post_img2.png')}}"  alt="">
         <img src="{{ url_for('static',filename='img/post_img3.png')}}" alt=""> -->
@@ -891,7 +891,7 @@
     
     <div class="chat-container" id="chat_layout">
         <div class="header" id="header3" >
-            <div class="header_img"><img src="{{ url_for('static',filename='img/header.png')}}" width="44px" alt=""></div>
+            <div class="header_img"><img src="{{ url_for('static',filename='img/header2.png')}}" width="44px" alt=""></div>
             <div class="header_text"><p><b>Jasmyn &nbsp;</b><img src="{{ url_for('static',filename='img/correct.png')}}" width="16px;" alt="">&nbsp;<b style="color: gray;">•</b>&nbsp;<b style="color: #0095F6; font-size: 12px;">Follow</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="img/more.png" width="20px" alt=""></p><p style="margin-top: 0px;font-size: 12px;color: rgb(58, 224, 58);">Online</p></div>
         </div>
       <div class="chat-messages" id="chatMessages">
@@ -916,10 +916,10 @@
   var like_status='no';
   var ip='';
   var flow_dit={
+    'failflow1':["Sorry, it seems that you haven't answered my question",'Did you enjoy reading my previous post?'],
     'successflow1':['Okay. you <b style="color:#702EF9;">did</b> enjoy reading my previous post.',"What kind of content are you interested in on social media?","For example, my interest is music. "],
-    'failflow1':["Sorry, it seems that you haven't answered my question","Did you enjoy reading my previous post?"],
-    'successflow2':['Okay.',"Please follow my official account if you haven’t. Let’s explore this world together!"],
     'failflow2':["Sorry, it seems that you haven't answered my question","What kind of content are you interested in on social media?","For example, my interest is music. "],
+    'successflow2':['Okay.',"Please follow my official account if you haven’t. Let’s explore this world together!"],
     'success2flow1':['Okay. you <b style="color:#702EF9;">didn’t</b> enjoy reading my previous post.',"What kind of content are you interested in on social media?","For example, my interest is music. "],
   }
 
@@ -1031,11 +1031,7 @@ if (document.documentElement.scrollTop >= 200) {
                         showMessagesSequentially(flow_dit[flow]);
 
                     }else{
-                        if (first_s==1) {
-                            last_talk=['Okay. You are interested in content about <b style="color:#702EF9;">'+response.message,'Thanks for sharing that you <b style="color:#702EF9;">did</b> enjoy reading my previous posts. <b style="color:#702EF9;">Because you mentioned that</b> you like topics about <b style="color:#702EF9;">'+response.message+'</b>, I will share more related content in the future.','</b>Please follow my official account if you haven’t. Let’s explore this world together!'];
-                        }else if(first_s==2){
-                            last_talk=['Okay. You are interested in content about <b style="color:#702EF9;">'+response.message,'Thanks for sharing that you <b style="color:#702EF9;">didn’t</b> enjoy reading my previous posts. <b style="color:#702EF9;">Because you mentioned that</b> you like topics about <b style="color:#702EF9;">'+response.message+'</b>, I will share more related content in the future.','</b>Please follow my official account if you haven’t. Let’s explore this world together!'];
-                        }
+                        last_talk=['Okay. You are interested in content <b style="color:#702EF9;">'+response.message,'</b>Please follow my official account if you haven’t. Let’s explore this world together!'];
                        
                         async function showMessagesSequentially(messages) {
                             for (const message of messages) {
@@ -1059,7 +1055,7 @@ if (document.documentElement.scrollTop >= 200) {
                             .then(response => response.json())
                             .then(data => {
                                 data_dict['IP'] =  String(data.ip); 
-                                fetch("/save_chat", {
+                                fetch("/save_chat5", {
                                 method: "POST",
                                 headers: {
                                     "Content-Type": "application/json"
@@ -1124,7 +1120,7 @@ if (document.documentElement.scrollTop >= 200) {
         typingIndicator = document.createElement('div');
         typingIndicator.className = 'typing-indicator';
         typingIndicator.innerHTML = `
-            <img class="avatar" src="{{ url_for('static',filename='img/header.png')}}" alt="头像">
+            <img class="avatar" src="{{ url_for('static',filename='img/header2.png')}}" alt="头像">
             <div class="typing-dot"></div>
             <div class="typing-dot"></div>
             <div class="typing-dot"></div>
@@ -1149,7 +1145,7 @@ if (document.documentElement.scrollTop >= 200) {
         messageElement.className = `message ${type}`;
         if (type === 'received') {
             messageElement.innerHTML = `
-                <img class="avatar" src="{{ url_for('static',filename='img/header.png')}}" alt="头像">
+                <img class="avatar" src="{{ url_for('static',filename='img/header2.png')}}" alt="头像">
                 ${text}
                 <div class="message-time">${time}</div>
             `;
@@ -1201,7 +1197,7 @@ if (document.documentElement.scrollTop >= 200) {
         {
             id: 1,
             user: "Jasmyn.gram &nbsp;<img src='{{ url_for('static',filename='img/correct.png')}}' width='16px;' >&nbsp;<b style='color: gray;''>•</b>&nbsp;<b style='color: #0095F6; font-size: 12px;'>Follow</b>",
-            avatar: "{{ url_for('static',filename='img/header.png')}}",
+            avatar: "{{ url_for('static',filename='img/header2.png')}}",
             content: "Thank you for witnessing my debut on Instagram! 🌟 <br><br>I’m a virtual girl interested in Asian culture, music, and art 🎶🎨✨<br><br>Also, I am so excited to be a new earphone brand -- SONNIK's first-ever virtual ambassador! 🎧🩵<br><br>SONNIK is all about embracing the pleasure of music and having fun! 😄🎵💃<br><br><span style='color: blue;''>#InfluencerJasmyn #SONNIK #MusicFun</span>",
             time: "2025-06-20 10:30",
             likes: 5,
