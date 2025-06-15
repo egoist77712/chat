@@ -149,6 +149,8 @@ def get_message():
         - Name of the country : singapore, SG, China, USA, Malaysia
         - the aspect of education: Educate Campus,Education
 
+        If there are spelling mistakes, correct them and extract the appropriate interest(s).
+        If there are multiple interests in one message, return each interest separated by commas (e.g., "gaming and tech reviews").
         If the user gives an unrelated, ambiguous, or off-topic answer (e.g., "I don’t use social media", "Not sure"), return "redo".  
 
         Only return the interest name (e.g., "concert highlights") or "redo".  

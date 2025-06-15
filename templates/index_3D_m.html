@@ -264,8 +264,10 @@
         }
         #comment_input{
           margin-left: 10px;
+          font-size: 18px;
           border: 1px solid white;
           height: 30px;
+          width: 200px;
         }
         #header2{
             display: none;
@@ -359,6 +361,7 @@
         }
 
         .message.received {
+
             align-self: flex-start;
             background:  #EEEEEE;
             color: black;
@@ -368,6 +371,7 @@
 
         .message.received .avatar {
             position: absolute;
+
             left: -45px;
             top: 20px;
             width: 40px;
@@ -531,6 +535,10 @@
     </style>
     <style>
          @media (max-width: 1640px) {
+        .content {
+            transform: scale(0.8); /* 比如缩小到 80% 大小 */
+            transform-origin: top left; /* 缩放以左上角为基准 */
+        }
             .zhaopian{
         width: 450px; 
         height: 300px; 
@@ -559,8 +567,23 @@
 
          }
         @media (max-width: 1240px) {
-        nav{
-            display: none;
+        .xiangce{
+            width: 80%;
+
+            
+        }
+         .zhaopian{
+        width: 400px; 
+        height: 250px; 
+        }
+        .nav{
+            transform: scale(0.8); /* 比如缩小到 80% 大小 */
+            transform-origin: top left;
+            position: fixed;
+        }    
+        .content {
+            transform: scale(0.8); /* 比如缩小到 80% 大小 */
+            transform-origin: top left; /* 缩放以左上角为基准 */
         }
         .content{
             position:absolute;
@@ -569,113 +592,46 @@
             top: -30px;
             width: 100%;
             max-width: 90vw;
-            left: -20vw;
+            left: 0vw;
         }         
          }
         @media (max-width: 1000px) {
-        .message {
-            max-width: 50%;
-            margin-bottom: 12px;
-            padding: 10px 14px;
-            border-radius: 18px;
-            font-size: 14px;
-            line-height: 1.2;
-            position: relative;
-            animation: fadeIn 0.3s ease-out;
-            word-wrap: break-word;
-        }
-        #send_img{
-            margin-left: 25vw;
-        }
-        .like-btn {         
-            right: 20px;
-        }
-        #header2{
-            display: flex;
-        }
-        #header1{
-            display: none;
-        }
-        nav{
-            display: none;
-        }
-        .content{
-            position:absolute;
-            margin-left: 0;
-            margin-right: 0;
-            top: -30px;
-            width: 100%;
-            max-width: 90vw;
-            left: -20vw;
-        }
-        video{
-            width: 100vw;
-        }
-        .post{
-            display:inline;
-        }
-        .left_side{
-            margin-left: 0px;
-            width: 63vw;
-        }
-        .header{
-            width: 63vw;
-        }
-        .comment {
-            width: 100%;
-            max-width: 100vw;
-        }
-        .comment-list{
-            width: 120%;
-            max-width: 100vw;
-        }
-        .add_comment{
-            width: 63vw;
-        }
-        .comment-text{
-            font-size: 8px;
-        }
-        .comment-user {
-            font-size: 12px;
-        }
-        .text-center{
-          margin-left:  350px;
-          margin-right: auto;
-          width: 300px;
-        }
-        .text-center h1{
-            font-size: 15px;
-        }
-        #img_t{
-            width:60px;
-        }
-        .chat-container {
-           
-            width: 99.5vw;
-            max-width: 480px;
-            height: 400px;
-            background-color: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
+        .content {
+            transform: scale(0.6); /* 比如缩小到 80% 大小 */
+            transform-origin: top left; /* 缩放以左上角为基准 */
+            top: 0px;
+            left: 10vw;
 
         }
-        #header3{
-            display: flex;
+        .nav{
+            transform: scale(0.6); /* 比如缩小到 80% 大小 */
+            transform-origin: top left;
+            position: fixed;
+        } 
+        .xiangce{
+            width: 100%;
+
+            
         }
-        #send_img{
-            margin-left: 370px;
+         .zhaopian{
+        width: 400px; 
+        height: 250px; 
         }
     }
 
-        @media (max-width: 680px) {
-        .xiangce_img img{
-            margin-left: 5px;
-            width:150px;
-            height:200px;
-        } 
+    @media (max-width: 480px) {
+        .content {
+            transform: scale(1); /* 比如缩小到 80% 大小 */
+            transform-origin: top left; /* 缩放以左上角为基准 */
+        }
+        .xiangce{
+            width: 110%;
+        
+        }
+         .zhaopian{
+        width: 400px; 
+        height: 150px; 
+        }
         .message {
             max-width: 50%;
             margin-bottom: 12px;
@@ -778,8 +734,7 @@
     </style>
     <style>
 
-
-  @media (max-width: 680px) {
+  @media (max-width: 480px) {
    .chat-container {
            
 
@@ -794,6 +749,8 @@
 </head>
 
 <body>
+
+
   <div class="center-container" style="display:none;">
     
     <h1>Please click this button to finish the remaining questions in the survey.</h1>
@@ -844,9 +801,6 @@
           <div class="add_comment">
             <div class="add_comment_icon">
               <img id="heartImg" class="heart" src="{{ url_for('static',filename='img/love.png') }}" alt="爱心" onclick="toggleHeart()">
-              <img src="{{ url_for('static',filename='img/cm_ic.png')}}" alt="">
-              <img src="{{ url_for('static',filename='img/fly.png')}}" alt="">
-              <img src="{{ url_for('static',filename='img/flag.png')}}" style="margin-left: 50%;" alt="">
             </div>
             <div class="add_comment_text">
               <p style="font-size: 14px;margin: 10px;">Liked by <b>wakaba_uro0702</b> and <b>others</b></p>
@@ -859,32 +813,16 @@
                 
 
               <p id="send_comment" onclick="send_cm()">&nbsp; post</p>
-              <img src="{{ url_for('static',filename='img/smile.png')}}" width="26px;" height="27px;" id="send_img" alt="">
             </div>
           </div>
       </div>
     </div>
     <hr>
-    <div class="xiangce">
-        <p>More posts from Jasmyn.gram</p>
-        <div class="xiangce_img">
-        <div class="zhaopian" >
-            <img src="{{ url_for('static',filename='img/post_img4.png')}}" style="width: 100%; height: 100%; object-fit: cover;" />
-        </div>
-        <div class="zhaopian">
-            <img src="{{ url_for('static',filename='img/post_img5.png')}}" style="width: 100%; height: 100%; object-fit: cover;" />
-        </div>
-        <div class="zhaopian">
-            <img src="{{ url_for('static',filename='img/post_img6.png')}}" style="width: 100%; height: 100%; object-fit: cover;" />
-        </div>
-        <!-- <img src="{{ url_for('static',filename='img/post_img2.png')}}"  alt="">
-        <img src="{{ url_for('static',filename='img/post_img3.png')}}" alt=""> -->
-        </div>
-    </div>
+
     
     <br><br><br>
     <div class="text-center">
-      <h1>Scroll down to interact talk with me!</h1>
+      <h1>Scroll down to talk with me!</h1>
       <img src="{{ url_for('static',filename='img/down.gif')}}" style="margin-left: 25%;" id="img_t"  >
     </div>
     <br>
@@ -907,7 +845,25 @@
           </button>
       </div>
   </div>
+      <div class="xiangce">
+        <p>More posts from Jasmyn.gram</p>
+        <div class="xiangce_img">
+        <div class="zhaopian" >
+            <img src="{{ url_for('static',filename='img/post_img4.png')}}" style="width: 100%; height: 100%; object-fit: cover;" />
+        </div>
+        <div class="zhaopian">
+            <img src="{{ url_for('static',filename='img/post_img5.png')}}" style="width: 100%; height: 100%; object-fit: cover;" />
+        </div>
+        <div class="zhaopian">
+            <img src="{{ url_for('static',filename='img/post_img6.png')}}" style="width: 100%; height: 100%; object-fit: cover;" />
+        </div>
+        <!-- <img src="{{ url_for('static',filename='img/post_img2.png')}}"  alt="">
+        <img src="{{ url_for('static',filename='img/post_img3.png')}}" alt=""> -->
+        </div>
+    </div>
   </div>
+
+
   <script> 
   
   var user_list=[];
@@ -917,12 +873,11 @@
   var ip='';
   var flow_dit={
     'failflow1':["Sorry, it seems that you haven't answered my question",'Did you enjoy reading my previous post?'],
-    'successflow1':['Okay. you <b style="color:#702EF9;">did</b> enjoy reading my previous post.',"What kind of content are you interested in on social media?","For example, my interest is music. "],
+    'successflow1':['Okay. you <b style="color:#702EF9;">did</b> enjoy reading my previous post.',"First, I would like to know more about your experience on social media.","What topic are you interested in on social media?","For example, my interest is music. "],
     'failflow2':["Sorry, it seems that you haven't answered my question","What kind of content are you interested in on social media?","For example, my interest is music. "],
     'successflow2':['Okay.',"Please follow my official account if you haven’t. Let’s explore this world together!"],
-    'success2flow1':['Okay. you <b style="color:#702EF9;">didn’t</b> enjoy reading my previous post.',"What kind of content are you interested in on social media?","For example, my interest is music. "],
+    'success2flow1':['Okay. you <b style="color:#702EF9;">didn’t</b> enjoy reading my previous post.',"First, I would like to know more about your experience on social media.","What topic are you interested in on social media?","For example, my interest is music. "],
   }
-
   var flow_status=1
   </script>
   <script>
@@ -949,8 +904,10 @@ if (document.documentElement.scrollTop >= 200) {
     
     // 发送消息函数
     function sendMessage() {
-        if (window.innerWidth <= 680) {
+        if (window.innerWidth <= 480) {
       chatContainer.style.height='800px';
+        scrollToHeader3();
+
 //     window.scrollTo({
 //     top: document.documentElement.scrollHeight,
 //     behavior: 'smooth'
@@ -1032,6 +989,7 @@ if (document.documentElement.scrollTop >= 200) {
 
                     }else{
                         last_talk=['Okay. You are interested in content <b style="color:#702EF9;">'+response.message,'</b>Please follow my official account if you haven’t. Let’s explore this world together!'];
+
                        
                         async function showMessagesSequentially(messages) {
                             for (const message of messages) {
@@ -1073,21 +1031,23 @@ if (document.documentElement.scrollTop >= 200) {
                     
 
                             
-                            countdown = 15;
+                            countdown = 60;
                             setInterval(() => {
                             const timer = setInterval(() => {
                             if (countdown > 0) {
+                                messageInput.readOnly = true; 
                                 messageInput.placeholder = `The conversation has ended. Please wait and we will direct you to finish the remaining questions in the survey.`;
-                                countdown--;
+                                countdown--;                                
                             } else {
-                                document.getElementById("nav").style.display = "none";
+                                // document.getElementById("nav").style.display = "none";
 
-                                document.querySelectorAll(".content").forEach(element => {
-                                    element.style.display = "none";
-                                });
-                                document.querySelectorAll(".center-container").forEach(element => {
-                                    element.style.display = "inline";
-                                });
+                                // document.querySelectorAll(".content").forEach(element => {
+                                //     element.style.display = "none";
+                                // });
+                                // document.querySelectorAll(".center-container").forEach(element => {
+                                //     element.style.display = "inline";
+                                // });
+                                window.parent.postMessage({ action: "closeIframe", status: "done" }, "*");
                                 clearInterval(timer);
 
                             }
@@ -1370,13 +1330,24 @@ if (document.documentElement.scrollTop >= 200) {
   const input = document.getElementById('messageInput');
   const chatContainer = document.getElementById('chat_layout');
   input.addEventListener('focus', () => {
-    if (window.innerWidth <= 680 && flow_status==1) {
+    if (window.innerWidth <= 480 && flow_status==1) {
       chatContainer.style.height='500px';
     }
   });
 
 </script>
+<script>
+  function scrollToHeader3() {
+    const header = document.getElementById("header3");
+    if (header) {
+      header.scrollIntoView({ behavior: "smooth" }); // 或 "auto"
+    }
+  }
+  
 
+  // 调用这个函数，在发送消息后
+ 
+</script>
 </body>
 
 </html>
