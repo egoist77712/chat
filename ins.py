@@ -143,7 +143,7 @@ def get_message():
         - Entertainment: concerts, movie trailers, celebrity updates  
         - Lifestyle: fashion hauls, cooking tutorials, travel diaries  
         - Creative: art, DIY projects, music covers  
-        - Niche interests: gaming, tech, fitness, pet care  
+        - Niche interests: gaming, tech, fitness, pet care, beers and beer, wine tasting 
         - User-generated content: personal stories, vlogs, challenges
         - Names of celebrities or famous people(Both uppercase and lowercase are acceptable.) : Jay Chou, g dragon(G-DRAGON), jj lin(JJ Lin)
         - Name of the country : singapore, SG, China, USA, Malaysia
