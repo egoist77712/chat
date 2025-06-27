@@ -8,6 +8,14 @@
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   
   <style>
+    .follow:hover{
+        color: #333;
+    }
+    .follow{
+        color: #0095F6;
+        font-size: 12px;
+    }
+    
     .zhaopian{
         width: 300px; 
         height: 300px; 
@@ -540,19 +548,19 @@
             transform-origin: top left; /* 缩放以左上角为基准 */
         }
             .zhaopian{
-        width: 450px; 
-        height: 300px; 
-        overflow: hidden;
-        margin-left: 10px;
-    }
-            .content {
-      margin-left: -100px;
-    }
-                nav {
-    background-color:white;
-        width: 200px;
+            width: 450px; 
+            height: 300px; 
+            overflow: hidden;
+            margin-left: 10px;
+        }
+                .content {
+        margin-left: -100px;
+        }
+                    nav {
+        background-color:white;
+            width: 200px;
 
-    }
+        }
             .text-center{
             width: 800px;
             }
@@ -620,6 +628,9 @@
     }
 
     @media (max-width: 480px) {
+        .message.received {
+            width: 100%;
+        }
         .content {
             transform: scale(1); /* 比如缩小到 80% 大小 */
             transform-origin: top left; /* 缩放以左上角为基准 */
@@ -628,12 +639,12 @@
             width: 110%;
         
         }
-         .zhaopian{
+        .zhaopian{
         width: 400px; 
         height: 150px; 
         }
         .message {
-            max-width: 50%;
+            max-width: 70%;
             margin-bottom: 12px;
             padding: 10px 14px;
             border-radius: 18px;
@@ -785,13 +796,13 @@
     <div class="post">
         <div class="header" id="header2">
             <div class="header_img"><img src="{{ url_for('static',filename='img/header.png')}}" width="44px" alt=""></div>
-            <div class="header_text"><p><b>Jasmyn &nbsp;</b><img src="{{ url_for('static',filename='img/correct.png')}}" width="16px;" alt="">&nbsp;<b style="color: gray;">•</b>&nbsp;<b style="color: #0095F6; font-size: 12px;">Follow</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="img/more.png" width="20px" alt=""></p><p style="margin-top: 0px;font-size: 12px;">Original audio</p></div>
+            <div class="header_text"><p><b>Jasmyn &nbsp;</b><img src="{{ url_for('static',filename='img/correct.png')}}" width="16px;" alt="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="img/more.png" width="20px" alt=""></p><p style="margin-top: 0px;font-size: 12px;">Original audio</p></div>
         </div>
-      <div class="video"><video src="{{ url_for('static',filename='img/vedio.mp4')}}"   autoplay muted loop playsinline></video> </div>
+      <div class="video"><video src="{{ url_for('static',filename='img/vedio.mp4')}}" poster="{{ url_for('static',filename='img/loading2.png')}}"  autoplay muted loop playsinline></video> </div>
       <div class="left_side">
           <div class="header" id="header1">
               <div class="header_img"><img src="{{ url_for('static',filename='img/header.png')}}" width="44px" alt=""></div>
-              <div class="header_text"><p><b>Jasmyn &nbsp;</b><img src="{{ url_for('static',filename='img/correct.png')}}" width="16px;" alt="">&nbsp;<b style="color: gray;">•</b>&nbsp;<b style="color: #0095F6; font-size: 12px;">Follow</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="img/more.png" width="20px" alt=""></p><p style="margin-top: 0px;font-size: 12px;">Original audio</p></div>
+              <div class="header_text"><p><b>Jasmyn &nbsp;</b><img src="{{ url_for('static',filename='img/correct.png')}}" width="16px;" alt="">&nbsp;<b style="color: gray;">•</b>&nbsp;<b class="follow" onclick="toggleFollow(this)">Follow</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="img/more.png" width="20px" alt=""></p><p style="margin-top: 0px;font-size: 12px;">Original audio</p></div>
           </div>
           <div class="comment">
             <div class="comment-list" id="commentList">
@@ -830,7 +841,7 @@
     <div class="chat-container" id="chat_layout">
         <div class="header" id="header3" >
             <div class="header_img"><img src="{{ url_for('static',filename='img/header.png')}}" width="44px" alt=""></div>
-            <div class="header_text"><p><b>Jasmyn &nbsp;</b><img src="{{ url_for('static',filename='img/correct.png')}}" width="16px;" alt="">&nbsp;<b style="color: gray;">•</b>&nbsp;<b style="color: #0095F6; font-size: 12px;">Follow</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="img/more.png" width="20px" alt=""></p><p style="margin-top: 0px;font-size: 12px;color: rgb(58, 224, 58);">Online</p></div>
+            <div class="header_text"><p><b>Jasmyn &nbsp;</b><img src="{{ url_for('static',filename='img/correct.png')}}" width="16px;" alt="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="img/more.png" width="20px" alt=""></p><p style="margin-top: 0px;font-size: 12px;color: rgb(58, 224, 58);">Online</p></div>
         </div>
       <div class="chat-messages" id="chatMessages">
           <!-- 消息将通过JS动态添加 -->
@@ -870,25 +881,34 @@
   var chat_list=[];
   var comment_list=[];
   var like_status='no';
+  var follow_status='no'
   var ip='';
   var flow_dit={
-    'failflow1':["Sorry, it seems that you haven't answered my question",'Did you enjoy reading my previous post?'],
-    'successflow1':['Okay.',"First, I would like to know more about your experience on social media.","What topic are you interested in on social media?","For example, my interest is music. "],
-    'failflow2':["Sorry, it seems that you haven't answered my question","What kind of content are you interested in on social media?","For example, my interest is music. "],
-    'successflow2':['Okay.',"Please follow my official account if you haven’t. Let’s explore this world together!"],
-    'success2flow1':['Okay.',"First, I would like to know more about your experience on social media.","What topic are you interested in on social media?","For example, my interest is music. "],
+    'failflow1':["It seems that you haven't answered my question","May I know which country you live in?"],
+    'failflow2':["It seems that you haven't answered my question","What topic are you interested in on social media?","For example, my interest is music."],
   }
 
   var flow_status=1
+  var country=''
   </script>
+  <script>
+  function toggleFollow(element) {
+    if (element.innerText === "Follow") {
+      element.innerText = "Following";
+      element.style.color = "black";
+      follow_status='yes'
+    } else {
+      element.innerText = "Follow";
+      element.style.color = "#0095F6"; // 清除样式，恢复默认颜色
+      follow_status='no'
+    }
+  }
+</script>
   <script>
 function onScroll() {
 if (document.documentElement.scrollTop >= 200) {
-    addMessage('received', 'Hi there, nice to meet you. My name is Jasmyn, a virtual influencer!', getCurrentTime());
+    addMessage('received', 'Hi there, nice to meet you. My name is Jasmyn, a virtual influencer! Please leave your message here. ', getCurrentTime());
         // 模拟初始对话
-    setTimeout(() => {
-        addMessage('received', 'Did you enjoy reading my previous post?', getCurrentTime());
-    }, 1500);
     window.removeEventListener('scroll', onScroll); // 只启动一次倒计时，移除事件监听
 }
 
@@ -901,7 +921,6 @@ if (document.documentElement.scrollTop >= 200) {
     const sendButton = document.getElementById('sendButton');
     let isTyping = false;
     let typingIndicator = null;
-    var first_s=0;
     
     // 发送消息函数
     function sendMessage() {
@@ -926,7 +945,7 @@ if (document.documentElement.scrollTop >= 200) {
           
             $.ajax({
                 type: 'POST',
-                url: '/get_message',
+                url: '/comment',
                 contentType: 'application/json',  // 设置请求的Content-Type为application/json
                 data: JSON.stringify({ 
                     message:  msg, 
@@ -942,37 +961,37 @@ if (document.documentElement.scrollTop >= 200) {
                         return 0;
 
                     }
-                    else if(response.message == 'yes' ){
-                        var flow='successflow'+flow_status.toString();
-                        flow_status=2;                        
-                        async function showMessagesSequentially(messages) {
-                            for (const message of messages) {
-                                showTypingIndicator();
-                                await new Promise(resolve => setTimeout(resolve, 2000)); // 等待2秒
-                                hideTypingIndicator();
-                                addMessage('received', message, getCurrentTime());
-                                chat_list.push("Chat bot say: " + message);
-                            }
-                        }
-                        showMessagesSequentially(flow_dit[flow]);
-                        first_s=1;
+                    // else if(response.message == 'yes' ){
+                    //     var flow='successflow'+flow_status.toString();
+                    //     flow_status=2;                        
+                    //     async function showMessagesSequentially(messages) {
+                    //         for (const message of messages) {
+                    //             showTypingIndicator();
+                    //             await new Promise(resolve => setTimeout(resolve, 2000)); // 等待2秒
+                    //             hideTypingIndicator();
+                    //             addMessage('received', message, getCurrentTime());
+                    //             chat_list.push("Chat bot say: " + message);
+                    //         }
+                    //     }
+                    //     showMessagesSequentially(flow_dit[flow]);
+                    //     first_s=1;
 
-                    }else if(response.message == 'no'){
-                        var flow='success2flow'+flow_status.toString();                        
-                        flow_status=2;  
-                        async function showMessagesSequentially(messages) {
-                            for (const message of messages) {
-                                showTypingIndicator();
-                                await new Promise(resolve => setTimeout(resolve, 2000)); // 等待2秒
-                                hideTypingIndicator();
-                                addMessage('received', message, getCurrentTime());
-                                chat_list.push("Chat bot say: " + message);
-                            }
-                        }
-                        showMessagesSequentially(flow_dit[flow]);
-                        first_s=2;
+                    // }else if(response.message == 'no'){
+                    //     var flow='success2flow'+flow_status.toString();                        
+                    //     flow_status=2;  
+                    //     async function showMessagesSequentially(messages) {
+                    //         for (const message of messages) {
+                    //             showTypingIndicator();
+                    //             await new Promise(resolve => setTimeout(resolve, 2000)); // 等待2秒
+                    //             hideTypingIndicator();
+                    //             addMessage('received', message, getCurrentTime());
+                    //             chat_list.push("Chat bot say: " + message);
+                    //         }
+                    //     }
+                    //     showMessagesSequentially(flow_dit[flow]);
+                    //     first_s=2;
    
-                    }
+                    // }
                     else if(response.message.toLowerCase().includes("redo")){
 
                         var flow='failflow'+flow_status.toString();
@@ -985,12 +1004,18 @@ if (document.documentElement.scrollTop >= 200) {
                                 chat_list.push("Chat bot say: " + message);
                             }
                         }
-
                         showMessagesSequentially(flow_dit[flow]);
 
-                    }else{
-                        last_talk=['Okay.','</b>Please follow my official account if you haven’t. Let’s explore this world together!'];
-                       
+                    }else{                        
+                        interest_talk=['Please follow my official account if you haven’t. Let’s explore this world together!  You can also share your experience on social media, for example, the country you live in or the topics you are interested in on social media. For example, my interest is music.'];
+                        country_talk=["Please follow my official account if you haven’t. Let’s explore this world together!  You can also share your experience on social media, for example, the country you live in or the topics you are interested in on social media. For example, my interest is music."];
+                        if (flow_status==1){
+                            talk=country_talk;
+                            country=response.message;
+                        }else{
+                            talk=interest_talk;
+                        }
+
                         async function showMessagesSequentially(messages) {
                             for (const message of messages) {
                                 showTypingIndicator();
@@ -1000,15 +1025,17 @@ if (document.documentElement.scrollTop >= 200) {
                                 chat_list.push("Chat bot say: " + message);
                             }
                         }
-
-                        showMessagesSequentially(last_talk);
+                        
+                        showMessagesSequentially(talk);
+                        
                         if(flow_status>=2){
                             messageInput.readOnly = true; 
                             var data_dict={};
                             data_dict['user_message']=user_list;
                             data_dict['chatbot_message']=chat_list;
                             data_dict['like_status']=like_status;
-                            data_dict['comment_list']=comment_list;                           
+                            data_dict['comment_list']=comment_list;
+                            data_dict['follow']=follow_status;
                             fetch('https://api.ipify.org?format=json')
                             .then(response => response.json())
                             .then(data => {
@@ -1040,7 +1067,6 @@ if (document.documentElement.scrollTop >= 200) {
                                 countdown--;                                
                             } else {
                                 // document.getElementById("nav").style.display = "none";
-
                                 // document.querySelectorAll(".content").forEach(element => {
                                 //     element.style.display = "none";
                                 // });
@@ -1054,6 +1080,7 @@ if (document.documentElement.scrollTop >= 200) {
                             }, 1000);},10000);
 
                         }
+                        flow_status=2;
                     }
                     setInterval(() => {
                     messageInput.readOnly = false;
@@ -1156,7 +1183,7 @@ if (document.documentElement.scrollTop >= 200) {
     const comments = [
         {
             id: 1,
-            user: "Jasmyn.gram &nbsp;<img src='{{ url_for('static',filename='img/correct.png')}}' width='16px;' >&nbsp;<b style='color: gray;''>•</b>&nbsp;<b style='color: #0095F6; font-size: 12px;'>Follow</b>",
+            user: "Jasmyn.gram &nbsp;<img src='{{ url_for('static',filename='img/correct.png')}}' width='16px;' >&nbsp;<b style='color: gray;''>",
             avatar: "{{ url_for('static',filename='img/header.png')}}",
             content: "Thank you for witnessing my debut on Instagram! My name is Jasmyn. 🌟<br><br>Also, I am so excited to be a new headphone brand -- SONNIK’s first-ever virtual ambassador! 🎧🩵<br><br>SONNIK is all about embracing the pleasure of music and having fun! 😄🎵💃<br><br><span style='color: blue;''>#VirtualInfluencer #Jasmyn #SONNIK #MusicFun</span>",
             time: "2025-06-20 10:30",
