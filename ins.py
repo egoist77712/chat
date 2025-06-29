@@ -27,7 +27,7 @@ def check_sentence(sentence, banned_words):
     else:
         return False, []
 
-def write_to_google_sheet(user_msg, chatbot_msg, like_status, comment_list, ip,sheet_name):
+def write_to_google_sheet(user_msg, chatbot_msg, like_status, comment_list, ip,follow,sheet_name):
     # Step 1: 设置认证
     scopes = ["https://www.googleapis.com/auth/spreadsheets"]
     creds = Credentials.from_service_account_file("credentials.json", scopes=scopes)
@@ -44,7 +44,8 @@ def write_to_google_sheet(user_msg, chatbot_msg, like_status, comment_list, ip,s
         "\n".join(user_msg),
         "\n".join(chatbot_msg),
         like_status,
-        "\n".join(comment_list)
+        "\n".join(comment_list),
+        follow,
     ]
 
     # Step 4: 追加数据为一行
@@ -119,18 +120,19 @@ def get_message():
 
     base_prompt=''
     if flow_status==1:
-        base_prompt = f"""I asked the user: "Did you enjoy reading my previous post?"
+        base_prompt = f"""
+        I asked the user: "May I know which country you live in?"
 
-        Based on the user's reply, classify the response strictly into one of the following:
-
-        - Return "yes" if the user expresses enjoyment **or neutral-positive sentiment** (e.g., "I enjoyed reading it", "Yes I liked it", "It was great", "Maybe", "A little", "Not bad", "It was okay", etc.).
-        - Return "no" if the user clearly expresses dislike (e.g., "No, I didn't like it", "It was boring", "I hated it", etc.).
-        - Return "redo" if the user says something unrelated, unclear, or does not address the question (e.g., "What post?", "I'm busy", "Tell me more").
-
-        Only return one word: yes, no, or redo.
+        Your task:
+        - If the user input contains a **valid country name** or **official/commonly used country abbreviation** (e.g., "SG" for Singapore, "US" for United States), return the **correct country name** in English (e.g., "Singapore", "United States", "Malaysia").
+        - If the user input contains a **country name or abbreviation with clear spelling errors**, correct it and return the **correct country name** in English.
+        - If the input is **unclear, unrelated, not a country name/abbreviation, or cannot be corrected confidently**, return the string **"redo"**.
 
         User answer: {user_message}
+
+        Your response (only return the corrected country name or "redo"):
         """
+        
     elif flow_status==2:       
         base_prompt = f"""I asked the user: "What kind of content are you interested in on social media?"  
 
@@ -150,7 +152,7 @@ def get_message():
         - the aspect of education: Educate Campus,Education
 
         If there are spelling mistakes, correct them and extract the appropriate interest(s).
-        If there are multiple interests in one message, return each interest separated by commas (e.g., "gaming and tech reviews").
+        If there are multiple interests in one message, return each interest connected using " and " or " & " (e.g., "book and music" or "book & music"), but do not use commas.
         If the user gives an unrelated, ambiguous, or off-topic answer (e.g., "I don’t use social media", "Not sure"), return "redo".  
 
         Only return the interest name (e.g., "concert highlights") or "redo".  
@@ -192,10 +194,11 @@ def save_chat():
     chatbot_msg = data.get("chatbot_message")
     like_status = data.get("like_status")
     comment_list = data.get("comment_list")
+    follow=data.get("follow")
     ip = data.get("IP")
     print(ip)
 
-    write_to_google_sheet(user_msg, chatbot_msg, like_status, comment_list, ip,"high")
+    write_to_google_sheet(user_msg, chatbot_msg, like_status, comment_list, ip,follow,"high")
     return jsonify({"status": "success", "message": "数据已保存到 Google Sheet"})
 
 @app.route("/save_chat2", methods=["POST"])
@@ -206,9 +209,10 @@ def save_chat2():
     like_status = data.get("like_status")
     comment_list = data.get("comment_list")
     ip = data.get("IP")
+    follow=data.get("follow")
     print(ip)
 
-    write_to_google_sheet(user_msg, chatbot_msg, like_status, comment_list, ip,"medium")
+    write_to_google_sheet(user_msg, chatbot_msg, like_status, comment_list, ip,follow,"medium")
     return jsonify({"status": "success", "message": "数据已保存到 Google Sheet"})
 
 @app.route("/save_chat3", methods=["POST"])
@@ -219,9 +223,10 @@ def save_chat3():
     like_status = data.get("like_status")
     comment_list = data.get("comment_list")
     ip = data.get("IP")
+    follow=data.get("follow")
     print(ip)
 
-    write_to_google_sheet(user_msg, chatbot_msg, like_status, comment_list, ip,"low")
+    write_to_google_sheet(user_msg, chatbot_msg, like_status, comment_list, ip,follow,"low")
     return jsonify({"status": "success", "message": "数据已保存到 Google Sheet"})
 
 @app.route("/save_chat4", methods=["POST"])
@@ -232,9 +237,10 @@ def save_chat4():
     like_status = data.get("like_status")
     comment_list = data.get("comment_list")
     ip = data.get("IP")
+    follow=data.get("follow")
     print(ip)
 
-    write_to_google_sheet(user_msg, chatbot_msg, like_status, comment_list, ip,"3d_high")
+    write_to_google_sheet(user_msg, chatbot_msg, like_status, comment_list, ip,follow,"3d_high")
     return jsonify({"status": "success", "message": "数据已保存到 Google Sheet"})
 
 @app.route("/save_chat5", methods=["POST"])
@@ -245,9 +251,10 @@ def save_chat5():
     like_status = data.get("like_status")
     comment_list = data.get("comment_list")
     ip = data.get("IP")
+    follow=data.get("follow")
     print(ip)
 
-    write_to_google_sheet(user_msg, chatbot_msg, like_status, comment_list, ip,"3d_medium")
+    write_to_google_sheet(user_msg, chatbot_msg, like_status, comment_list, ip,follow,"3d_medium")
     return jsonify({"status": "success", "message": "数据已保存到 Google Sheet"})
 
 @app.route("/save_chat6", methods=["POST"])
@@ -258,9 +265,10 @@ def save_chat6():
     like_status = data.get("like_status")
     comment_list = data.get("comment_list")
     ip = data.get("IP")
+    follow=data.get("follow")
     print(ip)
 
-    write_to_google_sheet(user_msg, chatbot_msg, like_status, comment_list, ip,"3d_low")
+    write_to_google_sheet(user_msg, chatbot_msg, like_status, comment_list, ip,follow,"3d_low")
     return jsonify({"status": "success", "message": "数据已保存到 Google Sheet"})
 
 if __name__ == '__main__':
