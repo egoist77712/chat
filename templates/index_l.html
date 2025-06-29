@@ -907,7 +907,7 @@
   <script>
 function onScroll() {
 if (document.documentElement.scrollTop >= 200) {
-    addMessage('received', 'Hi there, nice to meet you. My name is Jasmyn, a virtual influencer! Please leave your message here. ', getCurrentTime());
+    addMessage('received', 'Hi there, nice to meet you. I’m Jasmyn, a virtual influencer! ', getCurrentTime());
         // 模拟初始对话
     window.removeEventListener('scroll', onScroll); // 只启动一次倒计时，移除事件监听
 }
@@ -1007,8 +1007,8 @@ if (document.documentElement.scrollTop >= 200) {
                         showMessagesSequentially(flow_dit[flow]);
 
                     }else{                        
-                        interest_talk=['Please follow my official account if you haven’t. Let’s explore this world together!  You can also share your experience on social media, for example, the country you live in or the topics you are interested in on social media. For example, my interest is music.'];
-                        country_talk=["Please follow my official account if you haven’t. Let’s explore this world together!  You can also share your experience on social media, for example, the country you live in or the topics you are interested in on social media. For example, my interest is music."];
+                        interest_talk=['If you haven’t followed my official account yet, don’t forget to hit that follow button. Let’s explore the world together!'];
+                        country_talk=["I’d love to know a bit more about you. Could you tell me which country you’re from and what  kinds of topics you are interested in on social media? For example, you might say, “I’m into music!”"];
                         if (flow_status==1){
                             talk=country_talk;
                             country=response.message;
