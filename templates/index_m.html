@@ -704,7 +704,7 @@
             font-size: 16px;
         }
         .comment-user {
-            font-size: 12px;
+            font-size: 16px;
         }
         .text-center{
           margin-left:  200px;
@@ -756,7 +756,11 @@
   }
 
 </style>
-
+<style>
+    .hid{
+        display: none;
+    }
+</style>
 </head>
 
 <body>
@@ -796,8 +800,8 @@
     <div class="post">
         <div class="header" id="header2">
             <div class="header_img"><img src="{{ url_for('static',filename='img/header.png')}}" width="44px" alt=""></div>
-            <div class="header_text"><p><b>Jasmyn &nbsp;</b><img src="{{ url_for('static',filename='img/correct.png')}}" width="16px;" alt="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="img/more.png" width="20px" alt=""></p><p style="margin-top: 0px;font-size: 12px;">Original audio</p></div>
-        </div>
+            <div class="header_text"><p><b>Jasmyn &nbsp;</b><img src="{{ url_for('static',filename='img/correct.png')}}" width="16px;" alt="">&nbsp;<b style="color: gray;">•</b>&nbsp;<b class="follow" onclick="toggleFollow(this)">Follow</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="img/more.png" width="20px" alt=""></p><p style="margin-top: 0px;font-size: 12px;">Original audio</p></div>
+          </div>
       <div class="video"><video src="{{ url_for('static',filename='img/vedio.mp4')}}" poster="{{ url_for('static',filename='img/loading2.png')}}"  autoplay muted loop playsinline></video> </div>
       <div class="left_side">
           <div class="header" id="header1">
@@ -832,13 +836,13 @@
 
     
     <br><br><br>
-    <div class="text-center">
+    <div class="text-center hid">
       <h1>Scroll down to talk with me!</h1>
       <img src="{{ url_for('static',filename='img/down.gif')}}" style="margin-left: 25%;" id="img_t"  >
     </div>
     <br>
     
-    <div class="chat-container" id="chat_layout">
+    <div class="chat-container hid" id="chat_layout">
         <div class="header" id="header3" >
             <div class="header_img"><img src="{{ url_for('static',filename='img/header.png')}}" width="44px" alt=""></div>
             <div class="header_text"><p><b>Jasmyn &nbsp;</b><img src="{{ url_for('static',filename='img/correct.png')}}" width="16px;" alt="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="img/more.png" width="20px" alt=""></p><p style="margin-top: 0px;font-size: 12px;color: rgb(58, 224, 58);">Online</p></div>
@@ -856,7 +860,7 @@
           </button>
       </div>
   </div>
-      <div class="xiangce">
+      <div class="xiangce hid">
         <p>More posts from Jasmyn.gram</p>
         <div class="xiangce_img">
         <div class="zhaopian" >
@@ -917,6 +921,16 @@ if (document.documentElement.scrollTop >= 200) {
 
 }
  window.addEventListener('scroll', onScroll);
+
+     window.addEventListener('load', () => {
+      console.log('已禁止滚动，20 秒后解锁');
+
+      setTimeout(() => {
+        document.querySelectorAll('.hid').forEach(el => {
+        el.classList.remove('hid');
+        });
+      }, 20000);
+    });
 </script>
   <script>
     const chatMessages = document.getElementById('chatMessages');
