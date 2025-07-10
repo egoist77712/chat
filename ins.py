@@ -27,7 +27,7 @@ def check_sentence(sentence, banned_words):
     else:
         return False, []
 
-def write_to_google_sheet(user_msg, chatbot_msg, like_status, comment_list, ip,follow,sheet_name):
+def write_to_google_sheet(user_msg, chatbot_msg, like_status, comment_list, ip,follow,s_time,e_time,sheet_name):
     # Step 1: 设置认证
     scopes = ["https://www.googleapis.com/auth/spreadsheets"]
     creds = Credentials.from_service_account_file("credentials.json", scopes=scopes)
@@ -46,6 +46,8 @@ def write_to_google_sheet(user_msg, chatbot_msg, like_status, comment_list, ip,f
         like_status,
         "\n".join(comment_list),
         follow,
+        s_time,
+        e_time
     ]
 
     # Step 4: 追加数据为一行
@@ -194,11 +196,13 @@ def save_chat():
     chatbot_msg = data.get("chatbot_message")
     like_status = data.get("like_status")
     comment_list = data.get("comment_list")
-    follow=data.get("follow")
+    s_time=data.get("enter_time")
+    e_time=data.get("finnish_time")
     ip = data.get("IP")
+    follow=data.get("follow")
     print(ip)
 
-    write_to_google_sheet(user_msg, chatbot_msg, like_status, comment_list, ip,follow,"high")
+    write_to_google_sheet(user_msg, chatbot_msg, like_status, comment_list, ip,follow,s_time,e_time,"high")
     return jsonify({"status": "success", "message": "数据已保存到 Google Sheet"})
 
 @app.route("/save_chat2", methods=["POST"])
@@ -208,11 +212,13 @@ def save_chat2():
     chatbot_msg = data.get("chatbot_message")
     like_status = data.get("like_status")
     comment_list = data.get("comment_list")
+    s_time=data.get("enter_time")
+    e_time=data.get("finnish_time")
     ip = data.get("IP")
     follow=data.get("follow")
     print(ip)
 
-    write_to_google_sheet(user_msg, chatbot_msg, like_status, comment_list, ip,follow,"medium")
+    write_to_google_sheet(user_msg, chatbot_msg, like_status, comment_list, ip,follow,s_time,e_time,"medium")
     return jsonify({"status": "success", "message": "数据已保存到 Google Sheet"})
 
 @app.route("/save_chat3", methods=["POST"])
@@ -222,11 +228,13 @@ def save_chat3():
     chatbot_msg = data.get("chatbot_message")
     like_status = data.get("like_status")
     comment_list = data.get("comment_list")
+    s_time=data.get("enter_time")
+    e_time=data.get("finnish_time")
     ip = data.get("IP")
     follow=data.get("follow")
     print(ip)
 
-    write_to_google_sheet(user_msg, chatbot_msg, like_status, comment_list, ip,follow,"low")
+    write_to_google_sheet(user_msg, chatbot_msg, like_status, comment_list, ip,follow,s_time,e_time,"low")
     return jsonify({"status": "success", "message": "数据已保存到 Google Sheet"})
 
 @app.route("/save_chat4", methods=["POST"])
@@ -236,11 +244,13 @@ def save_chat4():
     chatbot_msg = data.get("chatbot_message")
     like_status = data.get("like_status")
     comment_list = data.get("comment_list")
+    s_time=data.get("enter_time")
+    e_time=data.get("finnish_time")
     ip = data.get("IP")
     follow=data.get("follow")
     print(ip)
 
-    write_to_google_sheet(user_msg, chatbot_msg, like_status, comment_list, ip,follow,"3d_high")
+    write_to_google_sheet(user_msg, chatbot_msg, like_status, comment_list, ip,follow, s_time,e_time,"3d_high")
     return jsonify({"status": "success", "message": "数据已保存到 Google Sheet"})
 
 @app.route("/save_chat5", methods=["POST"])
@@ -250,11 +260,12 @@ def save_chat5():
     chatbot_msg = data.get("chatbot_message")
     like_status = data.get("like_status")
     comment_list = data.get("comment_list")
+    s_time=data.get("enter_time")
+    e_time=data.get("finnish_time")
     ip = data.get("IP")
     follow=data.get("follow")
-    print(ip)
 
-    write_to_google_sheet(user_msg, chatbot_msg, like_status, comment_list, ip,follow,"3d_medium")
+    write_to_google_sheet(user_msg, chatbot_msg, like_status, comment_list, ip,follow,s_time,e_time,"3d_medium")
     return jsonify({"status": "success", "message": "数据已保存到 Google Sheet"})
 
 @app.route("/save_chat6", methods=["POST"])
@@ -264,11 +275,12 @@ def save_chat6():
     chatbot_msg = data.get("chatbot_message")
     like_status = data.get("like_status")
     comment_list = data.get("comment_list")
+    s_time=data.get("enter_time")
+    e_time=data.get("finnish_time")
     ip = data.get("IP")
     follow=data.get("follow")
-    print(ip)
 
-    write_to_google_sheet(user_msg, chatbot_msg, like_status, comment_list, ip,follow,"3d_low")
+    write_to_google_sheet(user_msg, chatbot_msg, like_status, comment_list, ip,follow,s_time,e_time,"3d_low")
     return jsonify({"status": "success", "message": "数据已保存到 Google Sheet"})
 
 if __name__ == '__main__':

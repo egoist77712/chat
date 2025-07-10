@@ -928,6 +928,15 @@ if (document.documentElement.scrollTop >= 200) {
     });
 </script>
   <script>
+        const enter_time = new Date().toLocaleString('en-US', {
+    month: 'short',    // "Jul"
+    day: '2-digit',    // "10"
+    year: 'numeric',   // "2025"
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    hour12: false
+    });
     const chatMessages = document.getElementById('chatMessages');
     const messageInput = document.getElementById('messageInput');
     const sendButton = document.getElementById('sendButton');
@@ -1042,7 +1051,18 @@ if (document.documentElement.scrollTop >= 200) {
                         
                         if(flow_status>=2){
                             messageInput.readOnly = true; 
+                            var finnish_time=new Date().toLocaleString('en-US', {
+                            month: 'short',    // "Jul"
+                            day: '2-digit',    // "10"
+                            year: 'numeric',   // "2025"
+                            hour: '2-digit',
+                            minute: '2-digit',
+                            second: '2-digit',
+                            hour12: false
+                            });
                             var data_dict={};
+                            data_dict['finnish_time']=finnish_time;
+                            data_dict['enter_time']=enter_time;
                             data_dict['user_message']=user_list;
                             data_dict['chatbot_message']=chat_list;
                             data_dict['like_status']=like_status;
