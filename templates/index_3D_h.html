@@ -911,10 +911,12 @@
   <script>
 function onScroll() {
 if (document.documentElement.scrollTop >= 200) {
+    messageInput.readOnly = true;
     addMessage('received', 'Hi there, nice to meet you. I’m Jasmyn, a virtual influencer!', getCurrentTime());
         // 模拟初始对话
     setTimeout(() => {
         addMessage('received', 'I’d love to know a bit more about you. Could you tell me which country you’re from?', getCurrentTime());
+        messageInput.readOnly = false;
     }, 3000);
     window.removeEventListener('scroll', onScroll); // 只启动一次倒计时，移除事件监听
 }
@@ -1031,8 +1033,11 @@ if (document.documentElement.scrollTop >= 200) {
                             }
                         }
 
-                        showMessagesSequentially(flow_dit[flow]);
-
+                        async function handleConversationFlow() {
+                            await showMessagesSequentially(flow_dit[flow]);
+                            messageInput.readOnly = false; // 等待 showMessagesSequentially 执行完之后再设置为 false
+                        }
+                        handleConversationFlow();
                     }else{
                         
                         interest_talk=['Oh, you’re into <b style="color:#702EF9;">'+response.message+'. </b>— that’s great! Thanks for sharing that you are interested in '+response.message+'.',
@@ -1055,8 +1060,11 @@ if (document.documentElement.scrollTop >= 200) {
                             }
                         }
                         
-                        showMessagesSequentially(talk);
-                        
+                        async function handleConversationFlow() {
+                            await showMessagesSequentially(talk);
+                            messageInput.readOnly = false; // 等待 showMessagesSequentially 执行完之后再设置为 false
+                        }
+                        handleConversationFlow();
                         if(flow_status>=2){
                             messageInput.readOnly = true; 
                             var finnish_time=new Date().toLocaleString('en-US', {
@@ -1114,7 +1122,6 @@ if (document.documentElement.scrollTop >= 200) {
                                 // document.querySelectorAll(".center-container").forEach(element => {
                                 //     element.style.display = "inline";
                                 // });
-                                alert(1);
                                 window.parent.postMessage({ action: "closeIframe", status: "done" }, "*");
                                 clearInterval(timer);
 
@@ -1124,9 +1131,6 @@ if (document.documentElement.scrollTop >= 200) {
                         }
                         flow_status=2;
                     }
-                    setInterval(() => {
-                    messageInput.readOnly = false;
-                    },4000);
                     
   
 

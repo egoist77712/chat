@@ -911,10 +911,12 @@
   <script>
 function onScroll() {
 if (document.documentElement.scrollTop >= 200) {
+    messageInput.readOnly = true;
     addMessage('received', 'Hi there, nice to meet you. I’m Jasmyn, a virtual influencer!', getCurrentTime());
         // 模拟初始对话
     setTimeout(() => {
         addMessage('received', 'I’d love to know a bit more about you. Could you tell me which country you’re from?', getCurrentTime());
+        messageInput.readOnly = false;
     }, 3000);
     window.removeEventListener('scroll', onScroll); // 只启动一次倒计时，移除事件监听
 }
@@ -1039,8 +1041,12 @@ if (document.documentElement.scrollTop >= 200) {
                                 chat_list.push("Chat bot say: " + message);
                             }
                         }
+                        async function handleConversationFlow() {
+                            await showMessagesSequentially(flow_dit[flow]);
+                            messageInput.readOnly = false; // 等待 showMessagesSequentially 执行完之后再设置为 false
+                        }
 
-                        showMessagesSequentially(flow_dit[flow]);
+                        handleConversationFlow();
 
                     }else{
                         
@@ -1064,8 +1070,12 @@ if (document.documentElement.scrollTop >= 200) {
                             }
                         }
                         
-                        showMessagesSequentially(talk);
+                        async function handleConversationFlow() {
+                            await showMessagesSequentially(talk);
+                            messageInput.readOnly = false; // 等待 showMessagesSequentially 执行完之后再设置为 false
+                        }
 
+                        handleConversationFlow();
                         if(flow_status>=2){
                             messageInput.readOnly = true; 
                             var finnish_time=new Date().toLocaleString('en-US', {
@@ -1115,7 +1125,6 @@ if (document.documentElement.scrollTop >= 200) {
                                 messageInput.placeholder = `The conversation has ended. Please wait and we will direct you to finish the remaining questions in the survey.`;
                                 countdown--;                                
                             } else {
-                                alert(countdown);
                                 // document.getElementById("nav").style.display = "none";
 
                                 // document.querySelectorAll(".content").forEach(element => {
@@ -1133,12 +1142,7 @@ if (document.documentElement.scrollTop >= 200) {
                         }
                         flow_status=2;
                     }
-                    setInterval(() => {
-                    messageInput.readOnly = false;
-                    },4000);
-                    
-  
-
+                
                 },
                 error: function(xhr, status, error) {
                     console.error("Error: ", error);
