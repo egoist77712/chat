@@ -13,7 +13,7 @@
     }
     .follow{
         color: #0095F6;
-        font-size: 12px;
+        font-size: 14px;
     }
     
     .zhaopian{
@@ -915,7 +915,7 @@ if (document.documentElement.scrollTop >= 200) {
         // 模拟初始对话
     setTimeout(() => {
         addMessage('received', 'I’d love to know a bit more about you. Could you tell me which country you’re from?', getCurrentTime());
-    }, 1500);
+    }, 3000);
     window.removeEventListener('scroll', onScroll); // 只启动一次倒计时，移除事件监听
 }
 
@@ -929,7 +929,7 @@ if (document.documentElement.scrollTop >= 200) {
         document.querySelectorAll('.hid').forEach(el => {
         el.classList.remove('hid');
         });
-      }, 20000);
+      }, 15000);
     });
 </script>
   <script>
@@ -993,7 +993,7 @@ if (document.documentElement.scrollTop >= 200) {
                     //     async function showMessagesSequentially(messages) {
                     //         for (const message of messages) {
                     //             showTypingIndicator();
-                    //             await new Promise(resolve => setTimeout(resolve, 2000)); // 等待2秒
+                    //             await new Promise(resolve => setTimeout(resolve, 3000)); // 等待2秒
                     //             hideTypingIndicator();
                     //             addMessage('received', message, getCurrentTime());
                     //             chat_list.push("Chat bot say: " + message);
@@ -1008,7 +1008,7 @@ if (document.documentElement.scrollTop >= 200) {
                     //     async function showMessagesSequentially(messages) {
                     //         for (const message of messages) {
                     //             showTypingIndicator();
-                    //             await new Promise(resolve => setTimeout(resolve, 2000)); // 等待2秒
+                    //             await new Promise(resolve => setTimeout(resolve, 3000)); // 等待2秒
                     //             hideTypingIndicator();
                     //             addMessage('received', message, getCurrentTime());
                     //             chat_list.push("Chat bot say: " + message);
@@ -1024,7 +1024,7 @@ if (document.documentElement.scrollTop >= 200) {
                         async function showMessagesSequentially(messages) {
                             for (const message of messages) {
                                 showTypingIndicator();
-                                await new Promise(resolve => setTimeout(resolve, 2000)); // 等待2秒
+                                await new Promise(resolve => setTimeout(resolve, 3000)); // 等待2秒
                                 hideTypingIndicator();
                                 addMessage('received', message, getCurrentTime());
                                 chat_list.push("Chat bot say: " + message);
@@ -1047,7 +1047,7 @@ if (document.documentElement.scrollTop >= 200) {
                         async function showMessagesSequentially(messages) {
                             for (const message of messages) {
                                 showTypingIndicator();
-                                await new Promise(resolve => setTimeout(resolve, 2000)); // 等待2秒
+                                await new Promise(resolve => setTimeout(resolve, 3000)); // 等待2秒
                                 hideTypingIndicator();
                                 addMessage('received', message, getCurrentTime());
                                 chat_list.push("Chat bot say: " + message);
@@ -1097,7 +1097,7 @@ if (document.documentElement.scrollTop >= 200) {
                     
 
                             
-                            countdown = 60;
+                            countdown = 20;
                             setInterval(() => {
                             const timer = setInterval(() => {
                             if (countdown > 0) {
@@ -1225,7 +1225,7 @@ if (document.documentElement.scrollTop >= 200) {
             id: 1,
             user: "Jasmyn.gram &nbsp;<img src='{{ url_for('static',filename='img/correct.png')}}' width='16px;' >&nbsp;<b style='color: gray;''>",
             avatar: "{{ url_for('static',filename='img/header.png')}}",
-            content: "Thank you for witnessing my debut on Instagram! My name is Jasmyn. 🌟<br><br>Also, I am so excited to be a new headphone brand -- SONNIK’s first-ever virtual ambassador! 🎧🩵<br><br>SONNIK is all about embracing the pleasure of music and having fun! 😄🎵💃<br><br><span style='color: blue;''>#VirtualInfluencer #Jasmyn #SONNIK #MusicFun</span>",
+            content: "Thank you for witnessing my debut on Instagram! My name is Jasmyn. 🌟<br><br>Also, I am so excited to be a new headphone brand -- FunPlay’s first-ever virtual ambassador! 🎧🩵<br><br>FunPlay is all about embracing the pleasure of music and having fun! 😄🎵💃<br><br><span style='color: blue;''>#VirtualInfluencer #Jasmyn #FunPlay #MusicFun</span>",
             time: "2025-06-20 10:30",
             likes: 5,
             isLiked: false
