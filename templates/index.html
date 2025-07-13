@@ -1073,74 +1073,75 @@ if (document.documentElement.scrollTop >= 200) {
                         async function handleConversationFlow() {
                             await showMessagesSequentially(talk);
                             messageInput.readOnly = false; // 等待 showMessagesSequentially 执行完之后再设置为 false
+                            if(flow_status>=2){
+                                messageInput.readOnly = true; 
+                                var finnish_time=new Date().toLocaleString('en-US', {
+                                month: 'short',    // "Jul"
+                                day: '2-digit',    // "10"
+                                year: 'numeric',   // "2025"
+                                hour: '2-digit',
+                                minute: '2-digit',
+                                second: '2-digit',
+                                hour12: false
+                                });
+                                var data_dict={};
+                                data_dict['finnish_time']=finnish_time;
+                                data_dict['enter_time']=enter_time;
+                                data_dict['user_message']=user_list;
+                                data_dict['chatbot_message']=chat_list;
+                                data_dict['like_status']=like_status;
+                                data_dict['comment_list']=comment_list;
+                                data_dict['follow']=follow_status;
+                                fetch('https://api.ipify.org?format=json')
+                                .then(response => response.json())
+                                .then(data => {
+                                    data_dict['IP'] =  String(data.ip); 
+                                    fetch("/save_chat", {
+                                    method: "POST",
+                                    headers: {
+                                        "Content-Type": "application/json"
+                                    },
+                                    body: JSON.stringify(data_dict)
+                                    })
+                                    .then(response => response.json())
+                                    .then(result => {
+                                    console.log("服务器返回：", result);
+                                    });                                                   
+                                })
+                                .catch(error => {
+                                    console.error('获取IP失败:', error);
+                                });
+                        
+
+                                
+                                countdown = 20;
+                                setTimeout(() => {
+                                const timer = setInterval(() => {
+                                if (countdown > 0) {
+                                    messageInput.readOnly = true; 
+                                    messageInput.placeholder = `The conversation has ended. Please wait and we will direct you to finish the remaining questions in the survey.`;
+                                    countdown--;                                
+                                } else {
+                                    // document.getElementById("nav").style.display = "none";
+
+                                    // document.querySelectorAll(".content").forEach(element => {
+                                    //     element.style.display = "none";
+                                    // });
+                                    // document.querySelectorAll(".center-container").forEach(element => {
+                                    //     element.style.display = "inline";
+                                    // });
+                                    window.parent.postMessage({ action: "closeIframe", status: "done" }, "*");
+                                    clearInterval(timer);
+
+                                }
+                                }, 1000);},10000);
+
+                                }
+                                flow_status=2;
                         }
 
                         handleConversationFlow();
-                        if(flow_status>=2){
-                            messageInput.readOnly = true; 
-                            var finnish_time=new Date().toLocaleString('en-US', {
-                            month: 'short',    // "Jul"
-                            day: '2-digit',    // "10"
-                            year: 'numeric',   // "2025"
-                            hour: '2-digit',
-                            minute: '2-digit',
-                            second: '2-digit',
-                            hour12: false
-                            });
-                            var data_dict={};
-                            data_dict['finnish_time']=finnish_time;
-                            data_dict['enter_time']=enter_time;
-                            data_dict['user_message']=user_list;
-                            data_dict['chatbot_message']=chat_list;
-                            data_dict['like_status']=like_status;
-                            data_dict['comment_list']=comment_list;
-                            data_dict['follow']=follow_status;
-                            fetch('https://api.ipify.org?format=json')
-                            .then(response => response.json())
-                            .then(data => {
-                                data_dict['IP'] =  String(data.ip); 
-                                fetch("/save_chat", {
-                                method: "POST",
-                                headers: {
-                                    "Content-Type": "application/json"
-                                },
-                                body: JSON.stringify(data_dict)
-                                })
-                                .then(response => response.json())
-                                .then(result => {
-                                console.log("服务器返回：", result);
-                                });                                                   
-                            })
-                            .catch(error => {
-                                console.error('获取IP失败:', error);
-                            });
-                    
 
-                            
-                            countdown = 20;
-                            setTimeout(() => {
-                            const timer = setInterval(() => {
-                            if (countdown > 0) {
-                                messageInput.readOnly = true; 
-                                messageInput.placeholder = `The conversation has ended. Please wait and we will direct you to finish the remaining questions in the survey.`;
-                                countdown--;                                
-                            } else {
-                                // document.getElementById("nav").style.display = "none";
-
-                                // document.querySelectorAll(".content").forEach(element => {
-                                //     element.style.display = "none";
-                                // });
-                                // document.querySelectorAll(".center-container").forEach(element => {
-                                //     element.style.display = "inline";
-                                // });
-                                window.parent.postMessage({ action: "closeIframe", status: "done" }, "*");
-                                clearInterval(timer);
-
-                            }
-                            }, 1000);},10000);
-
-                        }
-                        flow_status=2;
                     }
                 
                 },

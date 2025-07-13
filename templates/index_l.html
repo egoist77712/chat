@@ -1053,9 +1053,7 @@ if (document.documentElement.scrollTop >= 200) {
                         async function handleConversationFlow() {
                             await showMessagesSequentially(talk);
                             messageInput.readOnly = false; // 等待 showMessagesSequentially 执行完之后再设置为 false
-                        }
-                        handleConversationFlow();
-                        if(flow_status>=2){
+                            if(flow_status>=2){
                             messageInput.readOnly = true; 
                             var finnish_time=new Date().toLocaleString('en-US', {
                             month: 'short',    // "Jul"
@@ -1120,6 +1118,9 @@ if (document.documentElement.scrollTop >= 200) {
 
                         }
                         flow_status=2;
+                        }
+                        handleConversationFlow();
+                        
                     }
                     
   
