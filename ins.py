@@ -138,10 +138,10 @@ def get_message():
     elif flow_status==2:       
         base_prompt = f"""I asked the user: "What kind of content are you interested in on social media?"  
 
-        If the user answers with a clear interest in **any content type that can be posted on social media** (e.g., "I like concert highlights", "I enjoy gaming streams", "I'm into art sketches", "I love pet tricks", "I follow tech reviews"), extract and return only the name of the interest (e.g., "concert highlights", "gaming streams", "art sketches", "pet tricks", "tech reviews").  
+        If the user answers with a clear interest in **any content type that can be posted on social media** (e.g., "I like concert highlights", "I enjoy gaming streams", "I'm into art sketches", "I love pet tricks", "I follow tech reviews","I follow politics news", "I'm into finance news", "I enjoy reading books"), extract and return only the name of the interest (e.g., "concert highlights", "gaming streams", "art sketches", "pet tricks", "tech reviews","politics news", "finance news", "books").  
 
         
-         If the user answers with a clear interest in **any content type that can be posted on social media** (e.g., "doll", "gaming", "sketches", "pet", "cat"), extract and return only the name of the interest (e.g., "doll", "gaming", "sketches", "pet", "cat").  
+         If the user answers with a clear interest in **any content type that can be posted on social media** (e.g., "doll", "gaming", "sketches", "pet", "cat" ， "news"), extract and return only the name of the interest (e.g., "doll", "gaming", "sketches", "pet", "cat"， "news").  
 
         Topics include (but are not limited to) all shareable content on social platforms, such as:  
         - Entertainment: concerts, movie trailers, celebrity updates  
@@ -155,7 +155,7 @@ def get_message():
 
         If there are spelling mistakes, correct them and extract the appropriate interest(s).
         If there are multiple interests in one message, return each interest connected using " and " or " & " (e.g., "book and music" or "book & music"), but do not use commas.
-        If the user gives an unrelated, ambiguous, or off-topic answer (e.g., "I don’t use social media", "Not sure"), return "redo".  
+        If the user gives an unrelated, ambiguous, or off-topic answer (e.g., "I don’t use social media", "Not sure" ， "Fine"), return "redo".  
 
         Only return the interest name (e.g., "concert highlights") or "redo".  
 
