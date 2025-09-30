@@ -233,14 +233,14 @@ def get_message2():
         You are a name extractor.  
         The user is asked: "How may I address you?"  
 
-        If the user's response contains a clear **name** (e.g., "I am Tom", "Call me Sarah", "My name is Alex"),  
-        → return only the extracted name, formatted with the first letter capitalized and the rest lowercase (e.g., `Tom`, `Sarah`, `Alex`).  
+        If the user's response contains a clear **name** (e.g., "I am Tom", "Call me Sarah", "My name is Alex", "I am Chen xi", "Call me Abdul Rahman bin Mohd"),  
+        → return only the extracted full name, with **each word's first letter uppercase and the rest lowercase** (e.g., `Tom`, `Sarah`, `Alex`, `Chen Xi`, `Abdul Rahman Bin Mohd`).  
 
         If the user's response does **not** contain a valid name (e.g., vague phrases like "call me maybe", "whatever", "you decide"),  
         → return exactly `redo`.  
 
         You must only return one of the two cases:  
-        1. The extracted name (single word, formatted with first letter uppercase, no extra text)  
+        1. The extracted full name (with each word capitalized, no extra text)  
         2. `redo`  
 
         User answer: {user_message}
@@ -251,15 +251,46 @@ def get_message2():
             You are a music preference extractor.  
             The user is asked: "Nice to meet you! May I know what types of music do you like?"  
 
-            If the user's response contains a clear music genre or style (e.g., "I like rock", "My favorite is jazz", "I enjoy pop music", "I like piano", "chinese rock", "violin"，"country music"),  
-            → return only the extracted genre/style word(s) in lowercase (e.g., `rock`, `jazz`, `pop`, `piano`, `chinese rock`, `violin`，"country music").  
+            If the user's response contains a clear music genre or style (e.g., "I like rock", "My favorite is jazz", "I enjoy pop music", "I like piano", "chinese rock", "violin", "country music"),  
+            → return only the extracted genre/style word(s) in lowercase (e.g., `rock music`, `jazz music`, `pop music`, `piano music`, `chinese rock`, `violin`, `country music`).  
+
+            Rules:  
+            - If the user enters a shortened form (e.g., `pop`, `rock`, `jazz`, `blues`, `country`，'Rock and Roll'), return the full form with “music” (e.g., `pop music`, `rock music`, `jazz music`, `blues music`, `country music`，'Rock and Roll').  
+            - If the user enters an instrument (e.g., `piano`, `guitar`, `violin`), return the full form with “music” (e.g., `piano music`, `guitar music`, `violin music`).  
+            - Keep everything in lowercase.  
+            - Do not add extra text beyond the genre/style.  
+
+            Recognized genres/styles include (but are not limited to):  
+            - Rock and Roll
+            - pop music  
+            - rock music  
+            - hip-hop / rap music  
+            - r&b / soul music  
+            - dance / edm music  
+            - classical music  
+            - jazz music  
+            - blues music  
+            - folk music  
+            - country music  
+            - piano music  
+            - guitar music  
+            - violin music  
+            - orchestral / symphonic music  
+            - ambient music  
+            - instrumental  
+            - soundtrack / film score music  
+            - reggae music  
+            - latin / salsa music  
+            - k-pop / j-pop music  
+            - metal music  
+            - new age / meditation music  
 
             If the user's response does NOT contain a clear music genre or style,  
             → return exactly `redo`.  
 
             You must only return one of the two cases:  
             1. The extracted music genre/style (single word or phrase, lowercase, no extra text)  
-            2. `redo` 
+            2. `redo`  
 
             User answer: {user_message}
 
@@ -267,18 +298,20 @@ def get_message2():
 
     elif flow_status==3:   
         base_prompt = f"""
-            You are an earbuds feature extractor.  
-            The user is asked: "What function do you care about the most when choosing earbuds?"  
+            You are an earbuds feature extractor.
+            The user is asked: "What function do you care about the most when choosing earbuds?"
 
-            If the user's response contains a clear earbuds feature or function (e.g., "Sound quality and noise control", "Long battery life", "Comfort and fit"),  
-            → return only the extracted feature text exactly as stated by the user, but converted to lowercase (no extra characters, no added punctuation).  
+            If the user's response clearly mentions an earbuds feature (examples: sound quality, noise cancellation, comfort, battery life, price, brand reputation, durability, wireless stability, style/design, portability, call quality, ease of controls, compatibility, water/sweat resistance, customizable sound, latency, social image, sustainability, health/safety, extra features), return only that feature in lowercase.
 
-            If the user's response does NOT contain a clear earbuds feature,  
-            → return exactly `redo`.  
+            Normalize common variants (e.g., comfortable → comfort, design → style/design, mic quality → call quality).
 
-            You must only return one of the two cases:  
-            1. The extracted earbuds feature text (lowercase, exactly as in user input, no extra text or punctuation)  
-            2. `redo`  
+            If the response does NOT contain a clear earbuds feature, return exactly: redo
+
+            You must only return one of the two cases:
+
+            The extracted earbuds feature text (lowercase, normalized)
+
+            redo
 
             User answer: {user_message}
 
