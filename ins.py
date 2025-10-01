@@ -102,6 +102,22 @@ def home9():
     # 渲染 index.html 页面
     return render_template('index2_l.html')
 
+@app.route('/3d_high2')
+def home10():
+    # 渲染 index.html 页面
+    return render_template('index_3d_2.html')
+
+@app.route('/3d_medium2')
+def home11():
+    # 渲染 index.html 页面
+    return render_template('index2_3d_m2.html')
+
+
+@app.route('/3d_low2')
+def home12():
+    # 渲染 index.html 页面
+    return render_template('index2_3d_l2.html')
+
 @app.route('/comment', methods=['POST'])
 def comment():
     data = request.json
@@ -255,7 +271,7 @@ def get_message2():
             → return only the extracted genre/style word(s) in lowercase (e.g., `rock music`, `jazz music`, `pop music`, `piano music`, `chinese rock`, `violin`, `country music`).  
 
             Rules:  
-            - If the user enters a shortened form (e.g., `pop`, `rock`, `jazz`, `blues`, `country`，'Rock and Roll'), return the full form with “music” (e.g., `pop music`, `rock music`, `jazz music`, `blues music`, `country music`，'Rock and Roll').  
+            - If the user enters a shortened form (e.g., `pop`, `rock`, `jazz`, `blues`, `country`，'Rock and Roll'，'popular songs'), return the full form with “music” (e.g., `pop music`, `rock music`, `jazz music`, `blues music`, `country music`，'Rock and Roll'，'pop music').  
             - If the user enters an instrument (e.g., `piano`, `guitar`, `violin`), return the full form with “music” (e.g., `piano music`, `guitar music`, `violin music`).  
             - Keep everything in lowercase.  
             - Do not add extra text beyond the genre/style.  
@@ -301,7 +317,7 @@ def get_message2():
             You are an earbuds feature extractor.
             The user is asked: "What function do you care about the most when choosing earbuds?"
 
-            If the user's response clearly mentions an earbuds feature (examples: sound quality, noise cancellation, comfort, battery life, price, brand reputation, durability, wireless stability, style/design, portability, call quality, ease of controls, compatibility, water/sweat resistance, customizable sound, latency, social image, sustainability, health/safety, extra features), return only that feature in lowercase.
+            If the user's response clearly mentions an earbuds feature (examples: sound quality, noise cancellation, comfort, battery life, price, brand reputation, durability, wireless stability, style/design, portability, call quality, ease of controls, compatibility, water/sweat resistance, customizable sound, latency, social image, sustainability, health/safety, extra features, color), return only that feature in lowercase.
 
             Normalize common variants (e.g., comfortable → comfort, design → style/design, mic quality → call quality).
 

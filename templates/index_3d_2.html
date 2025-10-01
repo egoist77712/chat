@@ -802,7 +802,7 @@
             <div class="header_img"><img src="{{ url_for('static',filename='img/header.png')}}" width="44px" alt=""></div>
             <div class="header_text"><p><b>Jasmyn &nbsp;</b><img src="{{ url_for('static',filename='img/correct.png')}}" width="16px;" alt="">&nbsp;<b style="color: gray;">•</b>&nbsp;<b class="follow" onclick="toggleFollow(this)">Follow</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="img/more.png" width="20px" alt=""></p><p style="margin-top: 0px;font-size: 12px;">Original audio</p></div>
           </div>
-      <div class="video"><video src="{{ url_for('static',filename='img/vedio.mp4')}}" poster="{{ url_for('static',filename='img/loading2.png')}}"  autoplay muted loop playsinline></video> </div>
+      <div class="video"><video src="{{ url_for('static',filename='img/vedio3.mp4')}}" poster="{{ url_for('static',filename='img/loading2.png')}}"  autoplay muted loop playsinline></video> </div>
       <div class="left_side">
           <div class="header" id="header1">
               <div class="header_img"><img src="{{ url_for('static',filename='img/header.png')}}" width="44px" alt=""></div>
@@ -1053,12 +1053,12 @@ if (document.documentElement.scrollTop >= 200) {
 
                     }else{
                         
-                        music_talk=['It’s lovely to hear that.',
-                                        " I am partnering with FunPlay, a new earbud brand, to promote music culture. May I know what function or feature do you care about the most when choosing earbuds? What matters most to me is having a unique colour 😊.",];
-                        name_talk=["Nice to meet you! May I know what types of music you like?"];
-                        function_talk=["It’s great that you care about that when choosing earbuds. ",
-                            "The FunX1 model showcased in my post might suit you, and it is the most popular product right now!",
-                            "We will share more updates for you. Let’s explore this world together!"
+                        music_talk=['It’s lovely to hear that you love <b style="color:#702EF9;">'+response.message+' </b>.',
+                                        ' I am partnering with FunPlay, a new earbud brand, to promote music culture. May I know  what function or feature do you care about the most when choosing earbuds? What matters most to me is having a unique colour 😊.',];
+                        name_talk=["Nice to meet you <b style='color:#702EF9;'>"+response.message+"</b> ! May I know what types of music you like?"];
+                        function_talk=["It’s great that you care about <b style='color:#702EF9;'>"+response.message+"</b> when choosing earbuds. ",
+                            "<b style='color:#702EF9;'>Because you shared that</b> you love <b style='color:#702EF9;'>"+type1+ "</b> and care about the feature of <b style='color:#702EF9;'>"+response.message+"</b>, the FunX1 model showcased in my post might suit you, and it is the most popular product right now!",
+                            "We will share more updates for you <b style='color:#702EF9;'>based on your preferences</b>. Let’s explore this world together!"
                         ];
                         if (flow_status==1){
                             talk=name_talk
