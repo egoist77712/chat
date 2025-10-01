@@ -267,17 +267,18 @@ def get_message2():
             You are a music preference extractor.  
             The user is asked: "Nice to meet you! May I know what types of music do you like?"  
 
-            If the user's response contains a clear music genre or style (e.g., "I like rock", "My favorite is jazz", "I enjoy pop music", "I like piano", "chinese rock", "violin", "country music"),  
-            → return only the extracted genre/style word(s) in lowercase (e.g., `rock music`, `jazz music`, `pop music`, `piano music`, `chinese rock`, `violin`, `country music`).  
+            If the user's response contains one or more clear music genres or styles (e.g., "I like rock", "My favorite is jazz", "I enjoy pop music", "I like piano", "chinese rock", "violin", "country music"),  
+            → return only the extracted genre/style word(s) in lowercase.  
 
             Rules:  
-            - If the user enters a shortened form (e.g., `pop`, `rock`, `jazz`, `blues`, `country`，'Rock and Roll'，'popular songs'), return the full form with “music” (e.g., `pop music`, `rock music`, `jazz music`, `blues music`, `country music`，'Rock and Roll'，'pop music').  
+            - If the user lists multiple genres/styles, return them joined with ` & ` (e.g., `pop music & rock music`, `jazz music & blues music`).  
+            - If the user enters a shortened form (e.g., `pop`, `rock`, `jazz`, `blues`, `country`, `rock and roll`, `popular songs`), return the full form with “music” (e.g., `pop music`, `rock music`, `jazz music`, `blues music`, `country music`, `rock and roll`, `pop music`).  
             - If the user enters an instrument (e.g., `piano`, `guitar`, `violin`), return the full form with “music” (e.g., `piano music`, `guitar music`, `violin music`).  
             - Keep everything in lowercase.  
-            - Do not add extra text beyond the genre/style.  
+            - Do not add extra text beyond the genre/style(s).  
 
             Recognized genres/styles include (but are not limited to):  
-            - Rock and Roll
+            - rock and roll  
             - pop music  
             - rock music  
             - hip-hop / rap music  
@@ -305,10 +306,11 @@ def get_message2():
             → return exactly `redo`.  
 
             You must only return one of the two cases:  
-            1. The extracted music genre/style (single word or phrase, lowercase, no extra text)  
+            1. The extracted music genre/style(s) (single word or phrase or multiple joined by ` & `, all lowercase, no extra text)  
             2. `redo`  
 
             User answer: {user_message}
+
 
         """
 
@@ -337,6 +339,7 @@ def get_message2():
             2. `redo`  
 
             User answer: {user_message}
+
 
         """
     print(base_prompt)
@@ -465,4 +468,3 @@ def save_chat6():
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8000)
-
