@@ -314,20 +314,27 @@ def get_message2():
 
     elif flow_status==3:   
         base_prompt = f"""
-            You are an earbuds feature extractor.
-            The user is asked: "What function do you care about the most when choosing earbuds?"
+            You are an earbuds feature extractor.  
+            The user is asked: "What function do you care about the most when choosing earbuds?"  
 
-            If the user's response clearly mentions an earbuds feature (examples: sound quality, noise cancellation, comfort, battery life, price, brand reputation, durability, wireless stability, style/design, portability, call quality, ease of controls, compatibility, water/sweat resistance, customizable sound, latency, social image, sustainability, health/safety, extra features, color), return only that feature in lowercase.
+            If the user's response clearly mentions one or more earbuds features, return only those feature(s) in lowercase.  
 
-            Normalize common variants (e.g., comfortable → comfort, design → style/design, mic quality → call quality).
+            Rules:  
+            - If the user lists multiple features, return them joined with ` & ` (e.g., `comfort & battery life`, `sound quality & noise cancellation`,'blues music & violinmusic ').  
+            - Normalize common variants:  
+            - comfortable / fitting → comfort  
+            - mic quality / microphone → call quality  
+            - design / looks / appearance → style/design  
+            - waterproof / sweatproof → water/sweat resistance  
+            - price / cost → price  
+            - Keep everything in lowercase.  
+            - Return only the feature text(s) (no extra characters or punctuation).  
 
-            If the response does NOT contain a clear earbuds feature, return exactly: redo
+            If the response does **NOT** contain a clear earbuds feature, return exactly: `redo`.  
 
-            You must only return one of the two cases:
-
-            The extracted earbuds feature text (lowercase, normalized)
-
-            redo
+            You must only return one of the two cases:  
+            1. the extracted earbuds feature text(s) (lowercase, normalized, joined with ` & ` if multiple)  
+            2. `redo`  
 
             User answer: {user_message}
 
@@ -458,3 +465,4 @@ def save_chat6():
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8000)
+
