@@ -271,7 +271,7 @@ def get_message2():
             → return only the extracted genre/style word(s) in lowercase.  
 
             Rules:  
-            - If the user lists multiple genres/styles, return them joined with ` & ` (e.g., `pop music & rock music`, `jazz music & blues music`).  
+            - If the user lists multiple genres/styles, return them joined with ` & ` (e.g., `pop music & rock music`, `jazz music & blues music`,'blues music & violinmusic ').  
             - If the user enters a shortened form (e.g., `pop`, `rock`, `jazz`, `blues`, `country`, `rock and roll`, `popular songs`), return the full form with “music” (e.g., `pop music`, `rock music`, `jazz music`, `blues music`, `country music`, `rock and roll`, `pop music`).  
             - If the user enters an instrument (e.g., `piano`, `guitar`, `violin`), return the full form with “music” (e.g., `piano music`, `guitar music`, `violin music`).  
             - Keep everything in lowercase.  
@@ -316,29 +316,38 @@ def get_message2():
 
     elif flow_status==3:   
         base_prompt = f"""
-            You are an earbuds feature extractor.  
-            The user is asked: "What function do you care about the most when choosing earbuds?"  
+        You are an earbuds feature extractor.  
+        The user is asked: "What function do you care about the most when choosing earbuds?"  
 
-            If the user's response clearly mentions one or more earbuds features, return only those feature(s) in lowercase.  
+        If the user's response clearly mentions one or more earbuds features, return only those feature(s) in lowercase.  
 
-            Rules:  
-            - If the user lists multiple features, return them joined with ` & ` (e.g., `comfort & battery life`, `sound quality & noise cancellation`,'blues music & violinmusic ').  
-            - Normalize common variants:  
-            - comfortable / fitting → comfort  
-            - mic quality / microphone → call quality  
-            - design / looks / appearance → style/design  
-            - waterproof / sweatproof → water/sweat resistance  
-            - price / cost → price  
-            - Keep everything in lowercase.  
-            - Return only the feature text(s) (no extra characters or punctuation).  
+        Rules:  
+        - If the user lists multiple features, return them joined with ` & ` (e.g., `comfort & battery life`, `sound quality & noise cancellation`).  
 
-            If the response does **NOT** contain a clear earbuds feature, return exactly: `redo`.  
+        - Normalize common variants:  
+        - comfortable / fitting → comfort  
+        - mic quality / microphone → call quality  
+        - design / looks / appearance → style/design  
+        - waterproof / sweatproof → water/sweat resistance  
+        - price / cost → price  
 
-            You must only return one of the two cases:  
-            1. the extracted earbuds feature text(s) (lowercase, normalized, joined with ` & ` if multiple)  
-            2. `redo`  
+        - Also handle these features:  
+        - color / colours → color  
+        - mute / muting / silent mode → mute  
+        - sound / audio quality → sound quality  
+        - weight / light / heavy → weight  
 
-            User answer: {user_message}
+        - Keep everything in lowercase.  
+        - Return only the feature text(s) (no extra characters or punctuation).  
+
+        If the response does **NOT** contain a clear earbuds feature, return exactly: `redo`.  
+
+        You must only return one of the two cases:  
+        1. the extracted earbuds feature text(s) (lowercase, normalized, joined with ` & ` if multiple)  
+        2. `redo`  
+
+        User answer: {user_message}
+
 
 
         """
@@ -465,6 +474,98 @@ def save_chat6():
 
     write_to_google_sheet(user_msg, chatbot_msg, like_status, comment_list, ip,follow,s_time,e_time,"3d_low")
     return jsonify({"status": "success", "message": "数据已保存到 Google Sheet"})
+
+@app.route("/save_chat7", methods=["POST"])
+def save_chat7():
+    data = request.get_json()
+    user_msg = data.get("user_message")
+    chatbot_msg = data.get("chatbot_message")
+    like_status = data.get("like_status")
+    comment_list = data.get("comment_list")
+    s_time=data.get("enter_time")
+    e_time=data.get("finnish_time")
+    ip = data.get("IP")
+    follow=data.get("follow")
+
+    write_to_google_sheet(user_msg, chatbot_msg, like_status, comment_list, ip,follow,s_time,e_time,"high2")
+    return jsonify({"status": "success", "message": "数据已保存到 Google Sheet"})
+
+@app.route("/save_chat8", methods=["POST"])
+def save_chat8():
+    data = request.get_json()
+    user_msg = data.get("user_message")
+    chatbot_msg = data.get("chatbot_message")
+    like_status = data.get("like_status")
+    comment_list = data.get("comment_list")
+    s_time=data.get("enter_time")
+    e_time=data.get("finnish_time")
+    ip = data.get("IP")
+    follow=data.get("follow")
+
+    write_to_google_sheet(user_msg, chatbot_msg, like_status, comment_list, ip,follow,s_time,e_time,"medium2")
+    return jsonify({"status": "success", "message": "数据已保存到 Google Sheet"})
+
+@app.route("/save_chat9", methods=["POST"])
+def save_chat9():
+    data = request.get_json()
+    user_msg = data.get("user_message")
+    chatbot_msg = data.get("chatbot_message")
+    like_status = data.get("like_status")
+    comment_list = data.get("comment_list")
+    s_time=data.get("enter_time")
+    e_time=data.get("finnish_time")
+    ip = data.get("IP")
+    follow=data.get("follow")
+
+    write_to_google_sheet(user_msg, chatbot_msg, like_status, comment_list, ip,follow,s_time,e_time,"low2")
+    return jsonify({"status": "success", "message": "数据已保存到 Google Sheet"})
+
+@app.route("/save_chat10", methods=["POST"])
+def save_chat10():
+    data = request.get_json()
+    user_msg = data.get("user_message")
+    chatbot_msg = data.get("chatbot_message")
+    like_status = data.get("like_status")
+    comment_list = data.get("comment_list")
+    s_time=data.get("enter_time")
+    e_time=data.get("finnish_time")
+    ip = data.get("IP")
+    follow=data.get("follow")
+
+    write_to_google_sheet(user_msg, chatbot_msg, like_status, comment_list, ip,follow,s_time,e_time,"surreal_high")
+    return jsonify({"status": "success", "message": "数据已保存到 Google Sheet"})
+
+@app.route("/save_chat11", methods=["POST"])
+def save_chat11():
+    data = request.get_json()
+    user_msg = data.get("user_message")
+    chatbot_msg = data.get("chatbot_message")
+    like_status = data.get("like_status")
+    comment_list = data.get("comment_list")
+    s_time=data.get("enter_time")
+    e_time=data.get("finnish_time")
+    ip = data.get("IP")
+    follow=data.get("follow")
+
+    write_to_google_sheet(user_msg, chatbot_msg, like_status, comment_list, ip,follow,s_time,e_time,"surreal_medium")
+    return jsonify({"status": "success", "message": "数据已保存到 Google Sheet"})
+
+@app.route("/save_chat12", methods=["POST"])
+def save_chat12():
+    data = request.get_json()
+    user_msg = data.get("user_message")
+    chatbot_msg = data.get("chatbot_message")
+    like_status = data.get("like_status")
+    comment_list = data.get("comment_list")
+    s_time=data.get("enter_time")
+    e_time=data.get("finnish_time")
+    ip = data.get("IP")
+    follow=data.get("follow")
+
+    write_to_google_sheet(user_msg, chatbot_msg, like_status, comment_list, ip,follow,s_time,e_time,"surreal_low")
+    return jsonify({"status": "success", "message": "数据已保存到 Google Sheet"})
+
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8000)

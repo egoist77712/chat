@@ -1104,7 +1104,7 @@ if (document.documentElement.scrollTop >= 200) {
                                 .then(response => response.json())
                                 .then(data => {
                                     data_dict['IP'] =  String(data.ip); 
-                                    fetch("/save_chat", {
+                                    fetch("/save_chat10", {
                                     method: "POST",
                                     headers: {
                                         "Content-Type": "application/json"
@@ -1249,7 +1249,7 @@ if (document.documentElement.scrollTop >= 200) {
             id: 1,
             user: "Jasmyn.gram &nbsp;<img src='{{ url_for('static',filename='img/correct.png')}}' width='16px;' >&nbsp;<b style='color: gray;''>",
             avatar: "{{ url_for('static',filename='img/header.png')}}",
-            content: "Thank you for witnessing my debut on Instagram! My name is Jasmyn. 🌟<br><br>Also, I am so excited to be a new earbud brand -- FunPlay’s first-ever virtual ambassador! 🎧🩵<br><br>FunPlay is all about embracing the pleasure of music and having fun! 😄🎵💃<br><br><span style='color: blue;''>#VirtualInfluencer #Jasmyn #FunPlay #MusicFun</span>",
+            content: "Thank you for witnessing my debut on Instagram! My name is Jasmyn. I am a virtual creator, and I live in Zingaphoria on Mars!🚀🌌<br><br>Also, I am so excited to be a new earbud brand -- FunPlay’s first-ever virtual ambassador! 🎧🩵<br><br>FunPlay is all about embracing the pleasure of music and having fun! 😄🎵💃<br><br><span style='color: blue;''>#VirtualInfluencer #Jasmyn #FunPlay #MusicFun</span>",
             time: "2025-10-02 10:30",
             likes: 5,
             isLiked: false
