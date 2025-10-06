@@ -249,67 +249,77 @@ def get_message2():
         You are a name extractor.  
         The user is asked: "How may I address you?"  
 
-        If the user's response contains a clear **name** (e.g., "I am Tom", "Call me Sarah", "My name is Alex", "I am Chen xi", "Call me Abdul Rahman bin Mohd"),  
-        → return only the extracted full name, with **each word's first letter uppercase and the rest lowercase** (e.g., `Tom`, `Sarah`, `Alex`, `Chen Xi`, `Abdul Rahman Bin Mohd`).  
+        If the user's response contains a clear **name, stage name, alias, or nickname**  
+        (e.g., "I am Tom", "Call me Sarah", "My name is Alex", "I am Chen xi",  
+        "Call me Abdul Rahman bin Mohd", "Call me G Dragon"),  
+        → return only the extracted full name/alias, with **each word's first letter uppercase and the rest lowercase**  
+        (e.g., `Tom`, `Sarah`, `Alex`, `Chen Xi`, `Abdul Rahman Bin Mohd`, `G Dragon`).  
 
-        If the user's response does **not** contain a valid name (e.g., vague phrases like "call me maybe", "whatever", "you decide"),  
+        If the user's response does **not** contain a valid name/alias/nickname  
+        (e.g., vague phrases like "call me maybe", "whatever", "you decide"),  
         → return exactly `redo`.  
 
         You must only return one of the two cases:  
-        1. The extracted full name (with each word capitalized, no extra text)  
+        1. The extracted full name/alias/nickname (with each word capitalized, no extra text)  
         2. `redo`  
 
         User answer: {user_message}
+
         """
         
     elif flow_status==2:       
         base_prompt = f"""
-            You are a music preference extractor.  
-            The user is asked: "Nice to meet you! May I know what types of music do you like?"  
+        You are a music preference extractor.  
+        The user is asked: "Nice to meet you! May I know what types of music do you like?"  
 
-            If the user's response contains one or more clear music genres or styles (e.g., "I like rock", "My favorite is jazz", "I enjoy pop music", "I like piano", "chinese rock", "violin", "country music"),  
-            → return only the extracted genre/style word(s) in lowercase.  
+        If the user's response contains one or more clear music genres or styles (e.g., "I like rock", "My favorite is jazz", "I enjoy pop music", "I like piano", "chinese rock", "violin", "country music"),  
+        → return only the extracted genre/style word(s) in lowercase.  
 
-            Rules:  
-            - If the user lists multiple genres/styles, return them joined with ` & ` (e.g., `pop music & rock music`, `jazz music & blues music`,'blues music & violinmusic ').  
-            - If the user enters a shortened form (e.g., `pop`, `rock`, `jazz`, `blues`, `country`, `rock and roll`, `popular songs`), return the full form with “music” (e.g., `pop music`, `rock music`, `jazz music`, `blues music`, `country music`, `rock and roll`, `pop music`).  
-            - If the user enters an instrument (e.g., `piano`, `guitar`, `violin`), return the full form with “music” (e.g., `piano music`, `guitar music`, `violin music`).  
-            - Keep everything in lowercase.  
-            - Do not add extra text beyond the genre/style(s).  
+        Rules:  
+        - If the user lists multiple genres/styles, return them joined with ` & ` (e.g., `pop music & rock music`, `jazz music & blues music`, `blues music & violin music`).  
+        - If the user enters a shortened form (e.g., `pop`, `rock`, `jazz`, `blues`, `country`, `rock and roll`, `popular songs`, `funk`, `punk`), return the full form with “music” (e.g., `pop music`, `rock music`, `jazz music`, `blues music`, `country music`, `rock and roll`, `pop music`, `funk music`, `punk music`).  
+        - If the user enters an instrument (e.g., `piano`, `guitar`, `violin`), return the full form with “music” (e.g., `piano music`, `guitar music`, `violin music`).  
+        - Keep everything in lowercase.  
+        - Do not add extra text beyond the genre/style(s).  
+        - Normalize common variants (case-insensitive — e.g., rock music / rOCk music / rock mUsIc all treated the same).
 
-            Recognized genres/styles include (but are not limited to):  
-            - rock and roll  
-            - pop music  
-            - rock music  
-            - hip-hop / rap music  
-            - r&b / soul music  
-            - dance / edm music  
-            - classical music  
-            - jazz music  
-            - blues music  
-            - folk music  
-            - country music  
-            - piano music  
-            - guitar music  
-            - violin music  
-            - orchestral / symphonic music  
-            - ambient music  
-            - instrumental  
-            - soundtrack / film score music  
-            - reggae music  
-            - latin / salsa music  
-            - k-pop / j-pop music  
-            - metal music  
-            - new age / meditation music  
+        Recognized genres/styles include (but are not limited to):  
+        - funk music  
+        - punk music  
+        - rock and roll  
+        - pop music  
+        - rock music  
+        - hip-hop / rap music  
+        - r&b / soul music  
+        - dance / edm music  
+        - classical music  
+        - jazz music  
+        - blues music  
+        - folk music  
+        - country music  
+        - piano music  
+        - guitar music  
+        - violin music  
+        - orchestral / symphonic music  
+        - ambient music  
+        - instrumental  
+        - soundtrack / film score music  
+        - reggae music  
+        - latin / salsa music  
+        - k-pop / j-pop music  
+        - metal music  
+        - new age / meditation music  
 
-            If the user's response does NOT contain a clear music genre or style,  
-            → return exactly `redo`.  
+        If the user's response does NOT contain a clear music genre or style,  
+        → return exactly `redo`.  
 
-            You must only return one of the two cases:  
-            1. The extracted music genre/style(s) (single word or phrase or multiple joined by ` & `, all lowercase, no extra text)  
-            2. `redo`  
+        You must only return one of the two cases:  
+        1. The extracted music genre/style(s) (single word or phrase or multiple joined by ` & `, all lowercase, no extra text)  
+        2. `redo`  
 
-            User answer: {user_message}
+        User answer: {user_message}
+
+
 
 
         """
@@ -324,20 +334,19 @@ def get_message2():
         Rules:  
         - If the user lists multiple features, return them joined with ` & ` (e.g., `comfort & battery life`, `sound quality & noise cancellation`).  
 
-        - Normalize common variants:  
+        - Normalize common variants (case-insensitive — e.g., SOund / SOUND / Sound all treated the same):  
         - comfortable / fitting → comfort  
         - mic quality / microphone → call quality  
         - design / looks / appearance → style/design  
         - waterproof / sweatproof → water/sweat resistance  
         - price / cost → price  
-
-        - Also handle these features:  
         - color / colours → color  
         - mute / muting / silent mode → mute  
-        - sound / audio quality → sound quality  
+        - sound / audio quality / SOund (any case) → sound quality  
         - weight / light / heavy → weight  
+        - usability / ease of use / easy to use / good to use / 好用 / 易用 → usability  
 
-        - Keep everything in lowercase.  
+        - Always output in **lowercase** regardless of input case.  
         - Return only the feature text(s) (no extra characters or punctuation).  
 
         If the response does **NOT** contain a clear earbuds feature, return exactly: `redo`.  
