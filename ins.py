@@ -283,6 +283,7 @@ def get_message2():
         - Do not add extra text beyond the genre/style(s).  
         - Normalize common variants (case-insensitive — e.g., rock music / rOCk music / rock mUsIc all treated the same).
         - If the user only enters one type of music, then simply output that one type of music. For example, if the user enters 'meditation music', then output the music type entered by the user, 'meditation music', rather than 'new age/meditation music'.
+        - When listing music genres, it is essential to append the suffix 'music' after each type, for example, 'meditation music', 'new age music', and so on.
 
         Recognized genres/styles include (but are not limited to):  
         - funk music  
