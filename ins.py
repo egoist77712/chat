@@ -270,7 +270,7 @@ def get_message2():
     elif flow_status==2:       
         base_prompt = f"""
         You are a music preference extractor.  
-        The user is asked: "Nice to meet you! May I know what types of music do you like?"  
+        You ask the user: "Nice to meet you! May I know what types of music do you like?"  
 
         If the user's response contains one or more clear music genres or styles (e.g., "I like rock", "My favorite is jazz", "I enjoy pop music", "I like piano", "chinese rock", "violin", "country music"),  
         → return only the extracted genre/style word(s) in lowercase.  
@@ -284,6 +284,8 @@ def get_message2():
         - Normalize common variants (case-insensitive — e.g., rock music / rOCk music / rock mUsIc all treated the same).
         - If the user only enters one type of music, then simply output that one type of music. For example, if the user enters 'meditation music', then output the music type entered by the user, 'meditation music', rather than 'new age/meditation music'.
         - When listing music genres, it is essential to append the suffix 'music' after each type, for example, 'meditation music', 'new age music', and so on.
+        - If the user enters multiple types of music at the same time, then output all the types of music entered by the user.
+        - If the user enters 70’s, 80’s, or other similar old-era music, categorize them as oldies music and output oldies music.
 
         Recognized genres/styles include (but are not limited to):  
         - funk music  
@@ -321,6 +323,21 @@ def get_message2():
         - meditation music  
         - Vocaloid music
         - Indie music
+        - bolero music
+        - oldies music
+        - gospel music
+        - worship music
+        - Christian music
+        - Lofi music
+        - Lo-fi music
+        - Lofi Hip-Hop music
+        - Easy Listening music
+        - Adult Contemporary music
+        - Lounge music
+        - Chillhop music
+        - Ambient and Chill-out music
+        - Ballad music
+
 
         If the user's response does NOT contain a clear music genre or style,  
         → return exactly `redo`.  
