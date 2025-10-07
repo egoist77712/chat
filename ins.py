@@ -288,12 +288,15 @@ def get_message2():
         Recognized genres/styles include (but are not limited to):  
         - funk music  
         - punk music  
-        - rock and roll  
+        - rock and roll music 
         - pop music  
         - rock music  
-        - hip-hop / rap music  
-        - r&b / soul music  
-        - dance / edm music  
+        - hip-hop music
+        - rap music
+        - r&b music  
+        - soul music 
+        - dance music  
+        - edm music 
         - classical music  
         - jazz music  
         - blues music  
@@ -302,15 +305,20 @@ def get_message2():
         - piano music  
         - guitar music  
         - violin music  
-        - orchestral / symphonic music  
+        - orchestral music  
+        - symphonic music 
         - ambient music  
         - instrumental  
-        - soundtrack / film score music  
+        - soundtrack music  
+        - film score music
         - reggae music  
-        - latin / salsa music  
-        - k-pop / j-pop music  
+        - latin music  
+        - salsa music
+        - k-pop music  
+        - j-pop music 
         - metal music  
-        - new age / meditation music  
+        - new age music
+        - meditation music  
         - Vocaloid music
         - Indie music
 
