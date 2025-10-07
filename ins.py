@@ -309,7 +309,8 @@ def get_message2():
         - k-pop / j-pop music  
         - metal music  
         - new age / meditation music  
-        - Vocaloid musics
+        - Vocaloid music
+        - Indie music
 
         If the user's response does NOT contain a clear music genre or style,  
         → return exactly `redo`.  
