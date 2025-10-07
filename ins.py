@@ -282,6 +282,8 @@ def get_message2():
         - Keep everything in lowercase.  
         - Do not add extra text beyond the genre/style(s).  
         - Normalize common variants (case-insensitive — e.g., rock music / rOCk music / rock mUsIc all treated the same).
+        - If the type of music entered by the user belongs to a major category of music, such as meditation music belonging to new age music, then output 'meditation (new age) music'.
+        - If the music genre entered by the user belongs to a major music category, then directly output the name of this music category, for example, 'new age music', instead of outputting 'new age / meditation music'.
 
         Recognized genres/styles include (but are not limited to):  
         - funk music  
