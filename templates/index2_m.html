@@ -887,7 +887,7 @@
   var follow_status='no'
   var ip='';
   var flow_dit={
-    'failflow1':["It seems that you haven't answered my question","How may I address you?"],
+    'failflow1':["It seems that you haven't answered my question","What should I call you?"],
     'failflow2':["It seems that you haven't answered my question","May I know what types of music do you like?"],
     'failflow3':["It seems that you haven't answered my question","Now what function do you care about the most when choosing earbuds?"],
   }
@@ -917,7 +917,7 @@ if (document.documentElement.scrollTop >= 200) {
     addMessage('received', 'Hi there, nice to meet you. My name is Jasmyn, a virtual influencer!', getCurrentTime());
         // 模拟初始对话
     setTimeout(() => {
-        addMessage('received', 'How may I address you?', getCurrentTime());
+        addMessage('received', 'What should I call you?', getCurrentTime());
         messageInput.readOnly = false;
     }, 3000);
     window.removeEventListener('scroll', onScroll); // 只启动一次倒计时，移除事件监听
