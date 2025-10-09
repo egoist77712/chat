@@ -247,35 +247,29 @@ def get_message2():
     if flow_status==1:
         base_prompt = f"""
         You are a name extractor.  
-        You asked the user: "How may I address you?"  
+        The user is asked: "How may I address you?"  
 
         If the user's response contains a clear **name, stage name, alias, or nickname**  
         (e.g., "I am Tom", "Call me Sarah", "My name is Alex", "I am Chen xi",  
-        "Call me Abdul Rahman bin Mohd", "Call me G Dragon", "MJ", "HH", "Ng", "wong"),  
-        → return only the extracted full name/alias, formatted as follows:  
+        "Call me Abdul Rahman bin Mohd", "Call me G Dragon"),  
+        → return only the extracted full name/alias, with **each word's first letter uppercase and the rest lowercase**  
+        (e.g., `Tom`, `Sarah`, `Alex`, `Chen Xi`, `Abdul Rahman Bin Mohd`, `G Dragon`).  
 
-        **Formatting rules:**  
-        - Each word’s **first letter uppercase** and the rest lowercase.  
-        - **Preserve 2-letter or all-uppercase names** (e.g., “MJ”, “HH”, “SS”).  
-        - Preserve **mixed case or hyphenated** patterns (e.g., “H-h”, “Hh”).  
-        - Always capitalize surnames even if input is lowercase (e.g., “wong” → “Wong”, “ng” → “Ng”).  
-        - If the input is a single name or initial (e.g., “Seah”, “Ng”), still accept it as valid.  
-
-        If the user's response does **not** contain a valid name, alias, or nickname  
+        If the user's response does **not** contain a valid name/alias/nickname  
         (e.g., vague phrases like "call me maybe", "whatever", "you decide"),  
         → return exactly `redo`.  
 
         You must only return one of the two cases:  
-        1. The extracted full name/alias/nickname (properly formatted)  
+        1. The extracted full name/alias/nickname (with each word capitalized, no extra text)  
         2. `redo`  
 
         User answer: {user_message}
-        """
 
+        """
         
     elif flow_status==2:       
         base_prompt = f"""
-       You are a music preference extractor.  
+        You are a music preference extractor.  
         You ask the user: "Nice to meet you! May I know what types of music do you like?"  
 
         If the user's response contains one or more clear music genres or styles (e.g., "I like rock", "My favorite is jazz", "I enjoy pop music", "I like piano", "chinese rock", "violin", "country music"),  
@@ -329,7 +323,7 @@ def get_message2():
         - meditation music  
         - Vocaloid music
         - Indie music
-        - bolero music
+        - Bolero music
         - oldies music
         - gospel music
         - worship music
@@ -343,6 +337,8 @@ def get_message2():
         - Chillhop music
         - Ambient and Chill-out music
         - Ballad music
+        - MandoPop music
+        - Mandarin Pop music
 
 
         If the user's response does NOT contain a clear music genre or style,  
@@ -353,12 +349,16 @@ def get_message2():
         2. `redo`  
 
         User answer: {user_message}
+
+
+
+
         """
 
     elif flow_status==3:   
         base_prompt = f"""
         You are an earbuds feature extractor.  
-        You asked the user: "What function do you care about the most when choosing earbuds?"  
+        The user is asked: "What function do you care about the most when choosing earbuds?"  
 
         If the user's response clearly mentions one or more earbuds features, return only those feature(s) in lowercase.  
 
@@ -366,26 +366,16 @@ def get_message2():
         - If the user lists multiple features, return them joined with ` & ` (e.g., `comfort & battery life`, `sound quality & noise cancellation`).  
 
         - Normalize common variants (case-insensitive — e.g., SOund / SOUND / Sound all treated the same):  
-            - comfortable / fitting → comfort  
-            - mic quality / microphone → call quality  
-            - design / looks / appearance → style/design  
-            - waterproof / sweatproof → water/sweat resistance  
-            - price / cost / value for money / worth it / expensive / cheap / affordable / budget → cost-efficiency  
-            - color / colours → color  
-            - mute / muting / silent mode → mute  
-            - sound / audio quality → sound quality  
-            - weight / light / heavy → weight  
-            - usability / ease of use / easy to use / good to use / 好用 / 易用 → usability  
-            - cost-efficiency / value / worth → cost-efficiency  
-            - eco friendly / environmentally friendly / green material → eco friendly  
-            - quality / overall quality → quality  
-            - function / functionality → functionality  
-            - noise reduction / noise cancelling / ANC / cancellation → noise reduction  
-            - good vibe / aesthetic feel / mood → good vibe  
-            - sound clarity / clear sound / crisp sound → sound clarity  
-            - bass function / bass boost / deep bass → bass function  
-            - sound balance / balanced audio / equalized sound → sound balance  
-            - easy control / voice control / without opening app → easy control  
+        - comfortable / fitting → comfort  
+        - mic quality / microphone → call quality  
+        - design / looks / appearance → style/design  
+        - waterproof / sweatproof → water/sweat resistance  
+        - price / cost → price  
+        - color / colours → color  
+        - mute / muting / silent mode → mute  
+        - sound / audio quality / SOund (any case) → sound quality  
+        - weight / light / heavy → weight  
+        - usability / ease of use / easy to use / good to use / 好用 / 易用/ control → usability  
 
         - Always output in **lowercase** regardless of input case.  
         - Return only the feature text(s) (no extra characters or punctuation).  
@@ -397,6 +387,8 @@ def get_message2():
         2. `redo`  
 
         User answer: {user_message}
+
+
 
         """
     print(base_prompt)
