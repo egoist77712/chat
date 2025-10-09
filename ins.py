@@ -376,6 +376,7 @@ def get_message2():
         - sound / audio quality / SOund (any case) → sound quality  
         - weight / light / heavy → weight  
         - usability / ease of use / easy to use / good to use / 好用 / 易用/ control → usability  
+        - durability → durability
 
         - Always output in **lowercase** regardless of input case.  
         - Return only the feature text(s) (no extra characters or punctuation).  
