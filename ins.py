@@ -288,7 +288,7 @@ def get_message2():
         - If the user enters 70’s, 80’s, or other similar old-era music, categorize them as oldies music and output oldies music.
         - If the user inputs a type of music related to 'relax', then respond with 'relaxing music'
         - If the user answers with a type of music that is not in the database, then search online for the type of music the user entered, and after finding the results, inform the user about that type of music.
-        - If the user enters the wrong type of music, automatically search for the most similar type of music, correct it, and then respond with the correct type of music.
+        - If the user enters the wrong type of music, automatically search for the most similar type of music, correct it, and then respond with the correct type of music(For example, if the user enters 'jezz', it is corrected to 'jazz'; if they enter 'kpoh', it is corrected to 'kpop'.).
 
         Recognized genres/styles include (but are not limited to):  
         - funk music  
