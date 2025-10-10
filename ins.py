@@ -253,7 +253,7 @@ def get_message2():
         (e.g., "I am Tom", "Call me Sarah", "My name is Alex", "I am Chen xi",  
         "Call me Abdul Rahman bin Mohd", "Call me G Dragon"),  
         → return only the extracted full name/alias, with **each word's first letter uppercase and the rest lowercase**  
-        (e.g., `Tom`, `Sarah`, `Alex`, `Chen Xi`, `Abdul Rahman Bin Mohd`, `G Dragon`).  
+        (e.g., `Tom`, `Sarah`, `Alex`, `Chen Xi`, `Abdul Rahman Bin Mohd`, `G Dragon`,`May`, `June`, `July`, `August`, `September`, `October`, `November`, `December`, `Zero`).  
 
         If the user's response does **not** contain a valid name/alias/nickname  
         (e.g., vague phrases like "call me maybe", "whatever", "you decide"),  
@@ -286,6 +286,9 @@ def get_message2():
         - When listing music genres, it is essential to append the suffix 'music' after each type, for example, 'meditation music', 'new age music', and so on.
         - If the user enters multiple types of music at the same time, then output all the types of music entered by the user.
         - If the user enters 70’s, 80’s, or other similar old-era music, categorize them as oldies music and output oldies music.
+        - If the user inputs a type of music related to 'relax', then respond with 'relaxing music'
+        - If the user answers with a type of music that is not in the database, then search online for the type of music the user entered, and after finding the results, inform the user about that type of music.
+        - If the user enters the wrong type of music, automatically search for the most similar type of music, correct it, and then respond with the correct type of music.
 
         Recognized genres/styles include (but are not limited to):  
         - funk music  
@@ -339,6 +342,18 @@ def get_message2():
         - Ballad music
         - MandoPop music
         - Mandarin Pop music
+        - relaxing music
+        - Modern music
+        - contemporary music
+        - Cantonese pop music
+        - Kpop music
+        - remix music
+        - cover music
+        - acoustic music
+        - worship music
+
+
+        
 
 
         If the user's response does NOT contain a clear music genre or style,  
@@ -363,7 +378,9 @@ def get_message2():
         If the user's response clearly mentions one or more earbuds features, return only those feature(s) in lowercase.  
 
         Rules:  
-        - If the user lists multiple features, return them joined with ` & ` (e.g., `comfort & battery life`, `sound quality & noise cancellation`).  
+        - If the user lists multiple features, return them joined with ` & ` (e.g., `comfort & battery life`, `sound quality & noise cancellation`).
+        - If the functionality input by the user is not present in the database below, then directly search online for the most appropriate category for that functionality and inform the user of that category.（e.g.,When the user inputs 'Strong bass', 'bass is important', 'good bass', etc., respond with 'bass performance'.）.
+        - If the function entered by the user is incorrect, automatically search for the most similar function and correct it, then respond with the correct function category.
 
         - Normalize common variants (case-insensitive — e.g., SOund / SOUND / Sound all treated the same):  
         - comfortable / fitting → comfort  
@@ -373,10 +390,20 @@ def get_message2():
         - price / cost → price  
         - color / colours → color  
         - mute / muting / silent mode → mute  
-        - sound / audio quality / SOund (any case) → sound quality  
+        - sound / audio quality / SOund (any case) / soft sound / Sound insulation / loud / clear → sound quality  
         - weight / light / heavy → weight  
-        - usability / ease of use / easy to use / good to use / 好用 / 易用/ control → usability  
+        - usability / ease of use / easy to use / good to use / 好用 / 易用/ control / Easy function → usability  
         - durability → durability
+        - easy / easy control → ease control
+        - size / small → product size
+        - quality → product quality
+        - wireless → wireless function
+        - echo → noise cancelling
+        - bluetooth device / bluetooth-enabled headphones → bluetooth connection
+        - volume → volume control
+        - connection speed → connection speed
+        - no noise / sound insulation → noise cancellation
+        
 
         - Always output in **lowercase** regardless of input case.  
         - Return only the feature text(s) (no extra characters or punctuation).  
