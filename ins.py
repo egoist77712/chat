@@ -403,6 +403,7 @@ def get_message2():
         - volume → volume control
         - connection speed → connection speed
         - no noise / sound insulation → noise cancellation
+        - red / blue / black / white / pink / green / yellow / grey / purple / color → color
         
 
         - Always output in **lowercase** regardless of input case.  
