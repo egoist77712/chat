@@ -458,6 +458,11 @@ def get_message2():
         - breakthrough music
         - rising music
         - debut music
+        - JJ Lin's music
+        - Jay Chou's music
+        - G Dragon's music
+        - VM's music
+        - Reynard Silva's music
 
 
 
