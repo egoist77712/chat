@@ -290,7 +290,7 @@ def get_message2():
         - If the user answers with a type of music that is not in the database, then search online for the type of music the user entered, and after finding the results, inform the user about that type of music.
         - If the user enters the wrong type of music, automatically search for the most similar type of music, correct it, and then respond with the correct type of music(For example, if the user enters 'jezz', it is corrected to 'jazz'; if they enter 'kpoh', it is corrected to 'kpop'.).
         - If the user inputs a type of music that is a word describing the feeling of music (for example, Rhythm, beat, catchy, driving, complex, simple, tempo, fast, slow, allegro, adagio, soft, warm, sharp, rich, smooth, rough, layered, etc.), then respond to the user with an answer in the form of 'feeling + music' (for example, Rhythm music, beat music, catchy music, driving music, complex music, simple music, tempo music, fast music, slow music, allegro music, adagio music, soft music, warm music, sharp music, rich music, smooth music, rough music, layered music, etc.).
-        - If the user inputs a music genre that is a person's name or the name of a singer (for example, jay chou, VM, Reynard Silva, etc.), then respond to the user with 'singer's name + music' (for example, jay chou's music, VM's music, etc.)
+        - If the user inputs a music genre that is a person's name or the name of a singer (for example, jay chou, VM, Reynard Silva, JJ Lim,etc.), then respond to the user with 'singer's name + music' (for example, Jay chou's music, VM's music, JJ Lim's music, etc.).
 
         Recognized genres/styles include (but are not limited to):  
         - funk music  
@@ -353,6 +353,74 @@ def get_message2():
         - cover music
         - acoustic music
         - worship music
+        - trending music
+        - popular music
+        - viral music
+        - hits music
+        - top charts music
+        - charts music
+        - evergreen music
+        - classics music
+        - timeless music
+        - evergreen music
+        - light music
+        - easy listening music
+        - background music
+        - mood music
+        - study music
+        - focus music
+        - sleep music
+        - concentration music
+        - chill music
+        - party music
+        - workout music
+        - driving music
+        - road trip music
+        - travel music
+        - celebration music
+        - festive music
+        - holiday music
+        - seasonal music
+        - romantic music
+        - love songs music
+        - breakup music
+        - sad music
+        - happy music
+        - energetic music
+        - upbeat music
+        - motivational music
+        - inspirational music
+        - empowering music
+        - fun music
+        - danceable music
+        - sing-along music
+        - crowd-pleaser music
+        - feel-good music
+        - uplifting music
+        - soothing music
+        - calming music
+        - healing music
+        - rejuvenating music
+        - refreshing music
+        - revitalizing music
+        - invigorating music
+        - energizing music
+        - stimulating music
+        - exciting music
+        - thrilling music
+        - adventurous music
+        - epic music
+        - cinematic music
+        - dramatic music
+        - powerful music
+        - intense music
+        - dynamic music
+        - bold music
+        - vibrant music
+        - colorful music
+        - rich music
+        - textured music
+        - layered music
 
 
         
@@ -412,6 +480,11 @@ def get_message2():
         - smart function → smart function
         - easy function → easy function
         - functionality / function → functionality
+        - eco friendly / environmentally friendly / green → eco-friendly
+        - fast charging / quick charge → fast charging
+        - long-lasting battery / long battery life → battery life
+        - safety → safety
+        - sound effects / audio effects / spatial audio / sound balance → sound effects
         
 
         - Always output in **lowercase** regardless of input case.  
