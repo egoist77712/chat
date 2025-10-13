@@ -291,6 +291,7 @@ def get_message2():
         - If the user enters the wrong type of music, automatically search for the most similar type of music, correct it, and then respond with the correct type of music(For example, if the user enters 'jezz', it is corrected to 'jazz'; if they enter 'kpoh', it is corrected to 'kpop'.).
         - If the user inputs a type of music that is a word describing the feeling of music (for example, Rhythm, beat, catchy, driving, complex, simple, tempo, fast, slow, allegro, adagio, soft, warm, sharp, rich, smooth, rough, layered, etc.), then respond to the user with an answer in the form of 'feeling + music' (for example, Rhythm music, beat music, catchy music, driving music, complex music, simple music, tempo music, fast music, slow music, allegro music, adagio music, soft music, warm music, sharp music, rich music, smooth music, rough music, layered music, etc.).
         - If the user inputs a music genre that is a person's name or the name of a singer (for example, jay chou, VM, Reynard Silva, JJ Lim,etc.), then respond to the user with 'singer's name + music' (for example, Jay chou's music, VM's music, JJ Lim's music, etc.).
+        - If the user enters a type of language (for example, English, Vietnamese, Indian songs, Thai, Japanese, Western, Bollywood, Hindi, etc.), then respond with 'language + music' (for example, English music, Vietnamese music, Indian music, Thai music, Japanese music, Western music, Bollywood music, Hindi music, etc.).
 
         Recognized genres/styles include (but are not limited to):  
         - funk music  
@@ -421,6 +422,35 @@ def get_message2():
         - rich music
         - textured music
         - layered music
+        - english music
+        - mandopop music
+        - cantopop music
+        - chinese music
+        - asian music
+        - western music
+        - international music
+        - world music
+        - alternative music
+        - indie pop music
+        - indie rock music
+        - synth-pop music
+        - electro-pop music
+        - folk rock music
+        - country rock music
+        - blues rock music
+        - hard rock music
+        - heavy metal music
+        - thrash metal music
+        - death metal music
+        - black metal music
+        - progressive rock music
+        - progressive metal music
+        - post-rock music
+        - post-metal music
+        - experimental music
+        - avant-garde music
+        - underground music
+
 
 
         
