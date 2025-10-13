@@ -251,9 +251,9 @@ def get_message2():
 
         If the user's response contains a clear **name, stage name, alias, or nickname**  
         (e.g., "I am Tom", "Call me Sarah", "My name is Alex", "I am Chen xi",  
-        "Call me Abdul Rahman bin Mohd", "Call me G Dragon","My name is CC","My name is KK"),  
+        "Call me Abdul Rahman bin Mohd", "Call me G Dragon","My name is CC","My name is KK","My name is hr","My name is hc","My name is lm"),  
         → return only the extracted full name/alias, with **each word's first letter uppercase and the rest lowercase**  
-        (e.g., `Tom`, `Sarah`, `Alex`, `Chen Xi`, `Abdul Rahman Bin Mohd`, `G Dragon`,`CC`,`KK`,`May`, `June`, `July`, `August`, `September`, `October`, `November`, `December`, `Zero`).  
+        (e.g., `Tom`, `Sarah`, `Alex`, `Chen Xi`, `Abdul Rahman Bin Mohd`, `G Dragon`,`CC`,`KK`,`HR`,`HC`,`LM`,`May`, `June`, `July`, `August`, `September`, `October`, `November`, `December`, `Zero`).  
 
         If the user's response does **not** contain a valid name/alias/nickname  
         (e.g., vague phrases like "call me maybe", "whatever", "you decide"),  
@@ -289,6 +289,8 @@ def get_message2():
         - If the user inputs a type of music related to 'relax', then respond with 'relaxing music'
         - If the user answers with a type of music that is not in the database, then search online for the type of music the user entered, and after finding the results, inform the user about that type of music.
         - If the user enters the wrong type of music, automatically search for the most similar type of music, correct it, and then respond with the correct type of music(For example, if the user enters 'jezz', it is corrected to 'jazz'; if they enter 'kpoh', it is corrected to 'kpop'.).
+        - If the user inputs a type of music that is a word describing the feeling of music (for example, Rhythm, beat, catchy, driving, complex, simple, tempo, fast, slow, allegro, adagio, soft, warm, sharp, rich, smooth, rough, layered, etc.), then respond to the user with an answer in the form of 'feeling + music' (for example, Rhythm music, beat music, catchy music, driving music, complex music, simple music, tempo music, fast music, slow music, allegro music, adagio music, soft music, warm music, sharp music, rich music, smooth music, rough music, layered music, etc.).
+        - If the user inputs a music genre that is a person's name or the name of a singer (for example, jay chou, VM, Reynard Silva, etc.), then respond to the user with 'singer's name + music' (for example, jay chou's music, VM's music, etc.)
 
         Recognized genres/styles include (but are not limited to):  
         - funk music  
@@ -381,6 +383,8 @@ def get_message2():
         - If the user lists multiple features, return them joined with ` & ` (e.g., `comfort & battery life`, `sound quality & noise cancellation`).
         - If the functionality input by the user is not present in the database below, then directly search online for the most appropriate category for that functionality and inform the user of that category.（e.g.,When the user inputs 'Strong bass', 'bass is important', 'good bass', etc., respond with 'bass performance'.）.
         - If the function entered by the user is incorrect, automatically search for the most similar function and correct it, then respond with the correct function category.
+        - If the type of function entered by the user is one of the following, then respond to the user with one of the following. For example, if the user enters (easy function, smart function), then return (easy function, smart function).
+        - If the user's input contains the word 'function' and it cannot be found in the library below, then respond to the user with 'functionality'. (For example, if they input 'listening function', then return 'functionality')
 
         - Normalize common variants (case-insensitive — e.g., SOund / SOUND / Sound all treated the same):  
         - comfortable / fitting → comfort  
@@ -392,7 +396,7 @@ def get_message2():
         - mute / muting / silent mode → mute  
         - sound / audio quality / SOund (any case) / soft sound / Sound insulation / loud / clear → sound quality  
         - weight / light / heavy → weight  
-        - usability / ease of use / easy to use / good to use / 好用 / 易用/ control / Easy function → usability  
+        - usability / ease of use / easy to use / good to use / 好用 / 易用/ control  → usability  
         - durability → durability
         - easy / easy control → ease control
         - size / small → product size
@@ -405,6 +409,9 @@ def get_message2():
         - no noise / sound insulation → noise cancellation
         - red / blue / black / white / pink / green / yellow / grey / purple / color → color
         - performance / outputs → performance
+        - smart function → smart function
+        - easy function → easy function
+        - functionality / function → functionality
         
 
         - Always output in **lowercase** regardless of input case.  
