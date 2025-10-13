@@ -450,6 +450,14 @@ def get_message2():
         - experimental music
         - avant-garde music
         - underground music
+        - latest music
+        - new music 
+        - fresh music
+        - emerging music
+        - up-and-coming music
+        - breakthrough music
+        - rising music
+        - debut music
 
 
 
