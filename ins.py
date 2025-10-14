@@ -250,10 +250,10 @@ def get_message2():
         The user is asked: "How may I address you?"  
 
         If the user's response contains a clear **name, stage name, alias, or nickname**  
-        (e.g., "I am Tom", "Call me Sarah", "My name is Alex", "I am Chen xi",  
+        (e.g., "I am Tom", "Call me Sarah", "My name is Alex", "I am Chen xi","I am Ajbayu","I am Aj",  
         "Call me Abdul Rahman bin Mohd", "Call me G Dragon","My name is CC","My name is KK","My name is hr","My name is hc","My name is lm"),  
         → return only the extracted full name/alias, with **each word's first letter uppercase and the rest lowercase**  
-        (e.g., `Tom`, `Sarah`, `Alex`, `Chen Xi`, `Abdul Rahman Bin Mohd`, `G Dragon`,`CC`,`KK`,`HR`,`HC`,`LM`,`May`, `June`, `July`, `August`, `September`, `October`, `November`, `December`, `Zero`).  
+        (e.g., `Tom`, `Sarah`, `Alex`, `Chen Xi`, `Ajbayu`,`Aj`, `Abdul Rahman Bin Mohd`, `G Dragon`,`CC`,`KK`,`HR`,`HC`,`LM`,`May`, `June`, `July`, `August`, `September`, `October`, `November`, `December`, `Zero`).  
 
         If the user's response does **not** contain a valid name/alias/nickname  
         (e.g., vague phrases like "call me maybe", "whatever", "you decide"),  
